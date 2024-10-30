@@ -1,0 +1,152 @@
+/*!
+ * Custom styles
+ */
+
+// Add your own code here!
+// Because this file is compiled after Bootstrap, you're also able to use Bootstrap mixins for better code.
+
+/* albert-sans-regular - latin */
+@font-face {
+  font-display: swap; /* Check https://developer.mozilla.org/en-US/docs/Web/CSS/@font-face/font-display for other options. */
+  font-family: 'Albert Sans';
+  font-style: normal;
+  font-weight: 400;
+  src: url('../fonts/albert-sans-v1-latin-regular.woff2') format('woff2'); /* Chrome 36+, Opera 23+, Firefox 39+, Safari 12+, iOS 10+ */
+}
+/* albert-sans-italic - latin */
+@font-face {
+  font-display: swap; /* Check https://developer.mozilla.org/en-US/docs/Web/CSS/@font-face/font-display for other options. */
+  font-family: 'Albert Sans';
+  font-style: italic;
+  font-weight: 400;
+  src: url('../fonts/albert-sans-v1-latin-italic.woff2') format('woff2'); /* Chrome 36+, Opera 23+, Firefox 39+, Safari 12+, iOS 10+ */
+}
+/* albert-sans-700 - latin */
+@font-face {
+  font-display: swap; /* Check https://developer.mozilla.org/en-US/docs/Web/CSS/@font-face/font-display for other options. */
+  font-family: 'Albert Sans';
+  font-style: normal;
+  font-weight: 700;
+  src: url('../fonts/albert-sans-v1-latin-700.woff2') format('woff2'); /* Chrome 36+, Opera 23+, Firefox 39+, Safari 12+, iOS 10+ */
+}
+/* albert-sans-700italic - latin */
+@font-face {
+  font-display: swap; /* Check https://developer.mozilla.org/en-US/docs/Web/CSS/@font-face/font-display for other options. */
+  font-family: 'Albert Sans';
+  font-style: italic;
+  font-weight: 700;
+  src: url('../fonts/albert-sans-v1-latin-700italic.woff2') format('woff2'); /* Chrome 36+, Opera 23+, Firefox 39+, Safari 12+, iOS 10+ */
+}
+
+#page {
+  padding-bottom: 72px;
+}
+
+.front-page-header {
+  height: calc(100dvh - 76px - 72px);
+}
+
+.front-page-header > #front-data-container {
+  background-image: linear-gradient(to bottom, #2580C3FF, #2580C300);
+}
+
+#nav-main .navbar-brand > img {
+  height: 50px;
+}
+
+#front-data {
+  gap: 3rem;
+}
+
+.home .logos {
+  gap: 1rem;
+}
+
+.home .logos img {
+  max-height: 70px;
+}
+
+#logo-5to-cent {
+  max-width: 300px;
+}
+
+#welcome {
+  background-image: linear-gradient(to bottom, #D4E6F3 30%, #67A7D6 100%);
+}
+
+#main-footer .navbar .navbar-nav {
+  flex-direction: row;
+  justify-content: center;
+  gap: 2rem;
+  max-width: 500px;
+}
+
+#main-footer .navbar .navbar-nav .nav-link .link-detail {
+  font-size: 0.8rem;
+}
+
+body:not(.home) #content {
+  background-image: linear-gradient(to bottom, #2681C4, #519AD0);
+  padding-bottom: $spacer * 3;
+}
+
+@include media-breakpoint-down(xl) {
+  div:not(.home) .entry-header > .row > .col {
+    padding-right: 0;
+  }
+
+  div:not(.home) .entry-header > .row > .col > div > .row > .col {
+    padding-right: 0;
+  }
+}
+
+.disertante ul {
+  list-style-type: none;
+  margin-bottom: 0;
+  padding-left: 0;
+}
+
+#search-disertantes #query-disertante::placeholder {
+  color: $light;
+  opacity: 0.75;
+}
+
+#sponsors-logos {
+  gap: $spacer * 1.5;
+}
+
+#sponsors-logos figure {
+  aspect-ratio: 1.5 / 1;
+  max-width: clamp(120px, 140px, 160px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+#sponsors-logos figure img {
+  filter: grayscale(100%);
+  height: auto;
+  max-height: 100%;
+  width: auto;
+  max-width: 100%;
+}
+
+.detalle-disertantes {
+  width: 100%;
+  float: none;
+  margin: $spacer * 1.5 0;
+}
+
+@include media-breakpoint-up(md) {
+  .detalle-disertantes {
+    width: 250px;
+    float: right;
+    margin: 0 0 $spacer $spacer;
+  }
+}
+
+@include media-breakpoint-up(lg) {
+  .detalle-disertantes {
+    width: 300px;
+  }
+}
