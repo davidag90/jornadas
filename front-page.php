@@ -15,12 +15,12 @@ get_header();
           <h1 class="entry-title d-none"><?php the_title(); ?></h1>
           <div id="front-data" class="d-flex flex-column align-items-center justify-content-center h-100">
             <div class="logos d-flex flex-column align-items-center">
-              <div class="logos-row">
-                <img src="<?php echo get_stylesheet_directory_uri() ?>/assets/img/front-page/logo-100.png" alt="Círculo Odontológico de Córdoba - 100 años">
+              <div class="logos-row mb-3">
+                <img id="logo-100" src="<?php echo get_stylesheet_directory_uri() ?>/assets/img/front-page/logo-100.png" alt="Círculo Odontológico de Córdoba - 100 años">
               </div>
               <div class="logos-row d-flex flex-row justify-content-center">
-                <img src="<?php echo get_stylesheet_directory_uri() ?>/assets/img/front-page/logo-jornadas.svg" alt="23° Jornadas Odontológicas Internacionales del Centro" class="me-3">
-                <img src=" <?php echo get_stylesheet_directory_uri() ?>/assets/img/front-page/logo-encuentro.png" alt="37° Encuentro de la Sociedad de Cirugía BMF de Córdoba">
+                <img id="logo-jornadas" src="<?php echo get_stylesheet_directory_uri() ?>/assets/img/front-page/logo-jornadas.svg" alt="23° Jornadas Odontológicas Internacionales del Centro" class="me-3">
+                <img id="logo-encuentro" src=" <?php echo get_stylesheet_directory_uri() ?>/assets/img/front-page/logo-encuentro.png" alt="37° Encuentro de la Sociedad de Cirugía BMF de Córdoba">
               </div>
             </div><!-- .logos -->
             <div id="fecha" class="text-uppercase display-5 text-center fw-bold">
