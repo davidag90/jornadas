@@ -29,7 +29,7 @@ get_header();
             <div id="inscripcion">
               <a href="#" class="btn btn-warning btn-lg"><i class="fa-solid fa-pencil-square me-1"></i> Inscripciones</a>
             </div>
-            <img id="logo-5to-cent" src="<?php echo get_stylesheet_directory_uri() ?>/assets/img/front-page/logo-5to-cent.png" alt="Hotel Quinto Centenario (ex-Sheraton)">
+            <img id="logo-5to-cent" src="<?php echo get_stylesheet_directory_uri() ?>/assets/img/front-page/logo-5to-cent.svg" alt="Hotel Quinto Centenario (ex-Sheraton)">
           </div><!-- #front-data -->
         </div><!-- .entry-header -->
       </div>
