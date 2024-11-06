@@ -182,12 +182,12 @@ body:not(.home) #content {
     height: auto;
   }
 
-  #about-cordoba figure:nth-of-type(even) {
+  #about-cordoba figure:nth-of-type(odd) {
     float: right;
     margin-left: $spacer;
   }
 
-  #about-cordoba figure:nth-of-type(odd) {
+  #about-cordoba figure:nth-of-type(even) {
     float: left;
     margin-right: $spacer;
   }
