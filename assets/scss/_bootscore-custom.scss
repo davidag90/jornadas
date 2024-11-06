@@ -135,23 +135,21 @@ body:not(.home) #content {
   opacity: 0.75;
 }
 
-#sponsors-logos {
-  gap: $spacer * 1.5;
-}
-
-#sponsors-logos figure {
-  aspect-ratio: 1.5 / 1;
-  max-width: clamp(120px, 140px, 160px);
+.sponsors-container {
   display: flex;
-  align-items: center;
-  justify-content: center;
+  gap: $spacer $spacer * 1.5 ;
+  flex-wrap: wrap;
+  place-content: center;
 }
 
-#sponsors-logos figure img {
-  height: auto;
-  max-height: 100%;
-  width: auto;
-  max-width: 100%;
+.sponsors-container .sponsor a {
+  display: block;
+}
+
+.sponsors-container .sponsor img {
+  aspect-ratio: 16/10;
+  width: clamp(120px, 140px, 160px);
+  object-fit: contain;
 }
 
 .detalle-disertantes {

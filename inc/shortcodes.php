@@ -65,9 +65,51 @@ function show_disertantes() {
     }
   }
 
+  wp_reset_postdata();
+
   $output = ob_get_clean();
 
   return $output;
 }
 
 add_shortcode('show_disertantes', 'show_disertantes');
+
+function show_sponsors_logos() {
+  ob_start();
+
+  $args = [
+    'post_type' => 'sponsor',
+    'posts_per_page' => -1,
+    'order' => 'ASC',
+    'orderby' => 'title'
+  ];
+
+  $query = new WP_Query($args);
+
+  if ($query->have_posts()) {
+    echo '<div class="sponsors-container">';
+    while ($query->have_posts()) {
+      $query->the_post();
+
+      $name = get_the_title();
+      $link = get_field('link');
+      $logo = get_the_post_thumbnail_url();
+
+      echo '<div class="sponsor">';
+      if ($link) echo '<a href="' . $link . '" target="_blank" rel="noopener noreferrer">';
+      echo '<img src="' . $logo . '" alt="' . $name . '" />';
+      if ($link) echo '</a>';
+      echo '</div>'; // .sponsor
+    }
+
+    echo '</div>'; // .sponsors-containers
+  }
+
+  wp_reset_postdata();
+
+  $output = ob_get_clean();
+
+  return $output;
+}
+
+add_shortcode('show_sponsors_logos', 'show_sponsors_logos');
