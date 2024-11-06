@@ -43,7 +43,7 @@
 }
 
 .front-page-header {
-  height: calc(100dvh - 76px - 72px);
+  height: calc(100dvh - 76px - 82px);
   min-height: 600px;
 }
 
@@ -56,7 +56,7 @@
 }
 
 #front-data {
-  gap: 3rem;
+  gap: 2rem;
 }
 
 .home .logos {
@@ -74,6 +74,24 @@
 #logo-5to-cent {
   max-width: 320px;
   filter: drop-shadow(1px 2px 5px $dark);
+}
+
+#fecha {
+  font-size: $h3-font-size;
+  text-shadow: 1px 1px 6px black;
+  line-height: 1.25;
+}
+
+@include media-breakpoint-up(md) {
+  #fecha {
+    font-size: $h2-font-size;
+  }
+}
+
+@include media-breakpoint-up(lg) {
+  #fecha {
+    font-size: $h1-font-size;
+  }
 }
 
 #welcome {

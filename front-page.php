@@ -23,8 +23,8 @@ get_header();
                 <img id="logo-encuentro" src=" <?php echo get_stylesheet_directory_uri() ?>/assets/img/front-page/logo-encuentro.png" alt="37° Encuentro de la Sociedad de Cirugía BMF de Córdoba">
               </div>
             </div><!-- .logos -->
-            <div id="fecha" class="text-uppercase display-5 text-center fw-bold">
-              24, 25 y 26 <br>de Septiembre de 2025
+            <div id="fecha" class="text-uppercase text-center fw-bold">
+              24, 25 y 26 <br class="d-md-none">de Septiembre de 2025
             </div>
             <div id="inscripcion">
               <a href="#" class="btn btn-warning btn-lg"><i class="fa-solid fa-pencil-square me-1"></i> Inscripciones</a>
