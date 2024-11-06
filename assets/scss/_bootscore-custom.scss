@@ -188,7 +188,7 @@ body:not(.home) #content {
   }
 
   #about-cordoba figure:nth-child(odd) {
-    float: right;
+    float: left;
     margin-right: $spacer;
   }
 }
