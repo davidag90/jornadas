@@ -172,6 +172,11 @@ body:not(.home) #content {
   }
 }
 
+#5to-cent a,
+#info-epo a {
+  color: $light;
+}
+
 #about-cordoba h2 {
   padding-bottom: $spacer;
   margin-bottom: $spacer;
@@ -203,4 +208,10 @@ body:not(.home) #content {
   #about-cordoba figure {
     width: 300px;
   }
+}
+
+#hotel-sug {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: $spacer;
 }
