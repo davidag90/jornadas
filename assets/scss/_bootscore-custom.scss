@@ -172,6 +172,12 @@ body:not(.home) #content {
   }
 }
 
+#about-cordoba h2 {
+  padding-bottom: $spacer;
+  margin-bottom: $spacer;
+  border-bottom: $dark-border-subtle;
+}
+
 #about-cordoba figure {
   margin-bottom: $spacer * 1.5;
 }
