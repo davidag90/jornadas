@@ -171,3 +171,21 @@ body:not(.home) #content {
     width: 300px;
   }
 }
+
+@include media-breakpoint-up(md) {
+  #about-cordoba {
+    width: 250px;
+    height: auto;
+   
+  }
+
+  #about-cordoba figure:nth-child(even) {
+    float: right;
+    margin-left: $spacer;
+  }
+
+  #about-cordoba figure:nth-child(odd) {
+    float: right;
+    margin-right: $spacer;
+  }
+}
