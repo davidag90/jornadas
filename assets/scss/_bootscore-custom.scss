@@ -218,6 +218,24 @@ body:not(.home) #content {
   gap: $spacer;
 }
 
+@include media-breakpoint-up(md) {
+  #hotel-sug {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@include media-breakpoint-up(lg) {
+  #hotel-sug {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+@include media-breakpoint-up(xl) {
+  #hotel-sug {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
 #credits {
   font-size: $font-size-base * 0.9;
 }
