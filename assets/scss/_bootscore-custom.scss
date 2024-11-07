@@ -219,7 +219,7 @@ body:not(.home) #content {
 #hotel-sug {
   display: grid;
   grid-template-columns: 1fr;
-  gap: $spacer;
+  gap: $spacer * 1.5;
 }
 
 #hotel-sug .card > .card-body {
