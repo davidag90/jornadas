@@ -38,12 +38,14 @@
   src: url('../fonts/albert-sans-v1-latin-700italic.woff2') format('woff2'); /* Chrome 36+, Opera 23+, Firefox 39+, Safari 12+, iOS 10+ */
 }
 
+$bottom-nav-height: 77px;
+
 #page {
-  padding-bottom: 72px;
+  padding-bottom: $bottom-nav-height;
 }
 
 .front-page-header {
-  height: calc(100dvh - 76px - 82px);
+  height: calc(100dvh - 76px - #{$bottom-nav-height});
   min-height: 600px;
 }
 
@@ -214,4 +216,13 @@ body:not(.home) #content {
   display: grid;
   grid-template-columns: 1fr;
   gap: $spacer;
+}
+
+#credits {
+  font-size: $font-size-base * 0.9;
+}
+
+#credits img {
+  height: 48px;
+  width: auto;
 }
