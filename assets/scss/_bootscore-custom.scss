@@ -230,7 +230,7 @@ body:not(.home) #content {
   }
 }
 
-@include media-breakpoint-up(xl) {
+@include media-breakpoint-up(xxl) {
   #hotel-sug {
     grid-template-columns: repeat(4, 1fr);
   }
