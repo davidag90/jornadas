@@ -27,7 +27,7 @@ get_header();
               24, 25 y 26 <br class="d-md-none">de Septiembre de 2025
             </div>
             <div id="inscripcion">
-              <a href="#" class="btn btn-warning btn-lg"><i class="fa-solid fa-pencil-square me-1"></i> Inscripciones</a>
+              <a href="<?php echo home_url(); ?>/inscripciones" class="btn btn-warning btn-lg"><i class="fa-solid fa-pencil-square me-1"></i> Inscripciones</a>
             </div>
             <img id="logo-5to-cent" src="<?php echo get_stylesheet_directory_uri() ?>/assets/img/front-page/logo-5to-cent.svg" alt="Hotel Quinto Centenario (ex-Sheraton)">
           </div><!-- #front-data -->
