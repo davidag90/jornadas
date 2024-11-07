@@ -174,7 +174,11 @@ body:not(.home) #content {
   }
 }
 
-#5to-cent a,
+#quinto-cent iframe {
+  width: 100%;
+}
+
+#quinto-cent a,
 #info-epo a {
   color: $light;
 }
@@ -216,6 +220,15 @@ body:not(.home) #content {
   display: grid;
   grid-template-columns: 1fr;
   gap: $spacer;
+}
+
+#hotel-sug .card > .card-body {
+  display: flex;
+  flex-direction: column;
+}
+
+#hotel-sug .card > .card-body > .btn {
+  margin-top: auto;
 }
 
 @include media-breakpoint-up(md) {
