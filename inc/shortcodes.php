@@ -118,32 +118,60 @@ add_shortcode('show_sponsors_logos', 'show_sponsors_logos');
 function cat_pre_order() {
   ob_start();
 
-  $product = wc_get_product(194);
+  $products = wc_get_products([
+    'status' => 'publish'
+  ]);
 
-  if ($product) {
-    $variations_ids = $product->get_children();
+  $inscripcion_id = 0;
 
-    echo '<div id="cat_pre_order">';
-    echo '<div class="mb-3">';
-    echo '<label for="cat_inscripcion" class="form-label">Elija una categoría para su inscripción</label>';
-    echo '<select id="cat_inscripcion" class="form-select" aria-label="Elija la categoría de su inscripción" aria-describedby="passwordHelpBlock">';
-    echo '<option value="" selected>Seleccione una categoría...</option>';
-    foreach ($variations_ids as $variation) {
-      $variation_product = wc_get_product($variation);
-      echo '<option value="' . $variation_product->get_id() . '">' . $variation_product->get_attribute('categoria') . '</option>';
+  if ($products) {
+    foreach ($products as $product) {
+      $product_slug = $product->get_slug();
+
+      if ($product_slug === 'inscripcion') {
+        $inscripcion_id = $product->get_id();
+      }
     }
-    echo '</select>';
-    echo '<div id="cat_inscripcion_help" class="form-text">Por favor, elija con cuidado la categoría de inscripción adecuada, recuerde que pos-inscripción deberá acreditarla ante el personal del evento</div>';
-    echo '</div>'; // .mb-3
-    echo '<div class="mb-3">';
-    echo '<a id="btn_pre_order" class="btn btn-warning disabled" href="' . esc_url(home_url() . '/finalizar-compra/?add-to-cart=') . '">Iniciar inscripción <i class="fa-solid fa-caret-right"></i></a>';
-    echo '</div>'; // .mb-3
-    echo '</div>'; // #cat_pre_order
+  } else {
+    echo '<p>Error de sistema, intente nuevamente más tarde</p>';
 
     $output = ob_get_clean();
-  } else {
-    $output = "Error de servidor, intente nuevamente más tarde";
+
+    return $output;
   }
+
+  $inscripcion = wc_get_product($inscripcion_id);
+
+  if ($inscripcion) {
+    $variations = $inscripcion->get_children();
+
+    if ($variations) {
+      echo '<div id="cat_pre_order">';
+      echo '<div class="mb-3">';
+      echo '<label for="cat_inscripcion" class="form-label">Elija una categoría para su inscripción</label>';
+      echo '<select id="cat_inscripcion" class="form-select" aria-label="Elija la categoría de su inscripción" aria-describedby="passwordHelpBlock">';
+      echo '<option value="" selected>Seleccione una categoría...</option>';
+      foreach ($variations as $variation) {
+        $variation_product = wc_get_product($variation);
+        echo '<option value="' . $variation_product->get_id() . '">' . $variation_product->get_attribute('categoria') . '</option>';
+      }
+      echo '</select>';
+      echo '<div id="cat_inscripcion_help" class="form-text">Por favor, elija con cuidado la categoría de inscripción adecuada, recuerde que pos-inscripción deberá acreditarla ante el personal del evento</div>';
+      echo '</div>'; // .mb-3
+      echo '<div class="mb-3">';
+      echo '<a id="btn_pre_order" class="btn btn-warning disabled" href="' . esc_url(home_url() . '/finalizar-compra/?add-to-cart=') . '">Iniciar inscripción <i class="fa-solid fa-caret-right"></i></a>';
+      echo '</div>'; // .mb-3
+      echo '</div>'; // #cat_pre_order
+    } else {
+      ob_end_clean();
+
+      return;
+    }
+  } else {
+    echo "<p>Error de sistema, intente nuevamente más tarde</p>";
+  }
+
+  $output = ob_get_clean();
 
   return $output;
 }
