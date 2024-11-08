@@ -119,19 +119,13 @@ function cat_pre_order() {
   ob_start();
 
   $products = wc_get_products([
-    'status' => 'publish'
+    'slug' => 'inscripcion'
   ]);
 
   $inscripcion_id = 0;
 
-  if ($products) {
-    foreach ($products as $product) {
-      $product_slug = $product->get_slug();
-
-      if ($product_slug === 'inscripcion') {
-        $inscripcion_id = $product->get_id();
-      }
-    }
+  if (sizeof($products) == 1) {
+    $inscripcion_id = $products[0]->get_id();
   } else {
     echo '<p>Error de sistema, intente nuevamente más tarde</p>';
 
