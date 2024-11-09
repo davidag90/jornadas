@@ -69,3 +69,26 @@ function wc_custom_order_button_html($html) {
 }
 
 add_filter('woocommerce_order_button_html', 'wc_custom_order_button_html');
+
+
+/**
+ * Adding bootstrap classes to woocommerce checkout form
+ *
+ * @param $fields
+ * @return mixed
+ */
+function jor_wc_fields_custom_classes($fields) {
+  foreach ($fields as $fieldset) {
+    foreach ($fieldset as $field) {
+      // Add form-group class around the label and the input
+      $field['class'][] = 'form-group';
+
+      // Add form-control to the actual input
+      $field['input_class'][] = 'form-control';
+    }
+  }
+
+  return $fields;
+}
+
+add_filter('woocommerce_checkout_fields', 'jor_wc_fields_custom_classes');

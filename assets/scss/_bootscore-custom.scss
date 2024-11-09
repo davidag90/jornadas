@@ -261,3 +261,7 @@ body:not(.home) #content {
 .woocommerce-checkout-payment {
   color: $dark;
 }
+
+#order_review > .woocommerce-checkout-review-order-table .amount {
+  word-break: keep-all;
+}
