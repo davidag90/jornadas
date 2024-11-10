@@ -262,19 +262,6 @@ body:not(.home) #content {
   color: $dark;
 }
 
-#order_review > .shop_table {
-  border: 1px solid #e6e6e6;
-  margin: 0;
-  text-align: left;
-  width: 100%;
-  border-collapse: separate;
-  border-radius: 0;
-  border-bottom: none;
-  border-right: none;
-  margin-bottom: 35px;
-  border-bottom: 1px solid #e6e6e6;
-}
-
 #order_review > .shop_table .amount {
   word-break: keep-all;
 }
@@ -291,11 +278,16 @@ body:not(.home) #content {
   word-break: keep-all;
 }
 
-#order_review > .shop_table td {
-  border: 1px solid rgba(255, 255, 255, 0.25);
+#order_review > .shop_table td,
+#order_review > .shop_table th {
+  border: 1px solid rgba(255, 255, 255, 0.3);
 }
 
-#order_review > .shop_table th {
-  border: 1px solid rgba(255, 255, 255, 0.25);
-  background-color: rgba(0, 0, 0, 0.125);
+#order_review > .shop_table thead th,
+#order_review > .shop_table tfoot th {
+  background-color: rgba(255, 255, 255, 0.2);
+}
+
+#order_review > .shop_table tfoot td {
+  background-color: rgba(255, 255, 255, 0.1);
 }
