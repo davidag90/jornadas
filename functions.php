@@ -15,8 +15,8 @@ defined('ABSPATH') || exit;
  * Enqueue scripts and styles
  */
 add_action('wp_enqueue_scripts', 'bootscore_child_enqueue_styles');
-function bootscore_child_enqueue_styles() {
 
+function bootscore_child_enqueue_styles() {
   // Compiled main.css
   $modified_bootscoreChildCss = date('YmdHi', filemtime(get_stylesheet_directory() . '/assets/css/main.css'));
   wp_enqueue_style('main', get_stylesheet_directory_uri() . '/assets/css/main.css', array('parent-style'), $modified_bootscoreChildCss);
@@ -31,7 +31,11 @@ function bootscore_child_enqueue_styles() {
   ));
 
   if (is_page('inscripciones')) {
-    wp_enqueue_script('inscripcion', get_stylesheet_directory_uri() . '/assets/js/inscripcion.js', array('env'), null, true);
+    wp_enqueue_script('inscripcion-js', get_stylesheet_directory_uri() . '/assets/js/inscripcion.js', array('env'), null, true);
+  }
+
+  if (is_page('agenda')) {
+    wp_enqueue_script('agenda-js', get_stylesheet_directory_uri() . '/assets/js/agenda.js', array(), null, true);
   }
 }
 
