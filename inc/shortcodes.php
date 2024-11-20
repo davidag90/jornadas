@@ -171,3 +171,183 @@ function cat_pre_order() {
 }
 
 add_shortcode('cat_pre_order', 'cat_pre_order');
+
+
+function get_agenda_events() {
+  ob_start();
+
+  $conferencia_fields = acf_get_fields('group_671964041a098');
+
+  $salones = [];
+
+  foreach ($conferencia_fields as $field) {
+    if ($field['type'] == 'select' && $field['name'] == 'salon') {
+      $salones = $field['choices'];
+
+      break;
+    }
+  }
+
+  $especialidades = get_terms([
+    'taxonomy' => 'especialidad'
+  ]);
+
+  $query_disertantes = new WP_Query([
+    'post_type' => 'disertante',
+    'posts_per_page' => -1,
+    'orderby' => array(
+      'apellido' => 'ASC',
+      'nombre' => 'ASC'
+    ),
+    'meta_query' => array(
+      'apellido' => array(
+        'key' => 'apellido',
+        'compare' => 'EXISTS'
+      ),
+      'nombre' => array(
+        'key' => 'nombre',
+        'compare' => 'EXISTS'
+      )
+    )
+  ]);
+
+  $disertantes = [];
+
+  if ($query_disertantes->have_posts()) {
+    while ($query_disertantes->have_posts()) {
+      $query_disertantes->the_post();
+
+      $disertante_nombre = get_field('nombre');
+      $disertante_apellido = get_field('apellido');
+      $disertante_slug = get_post_field('post_name');
+
+      array_push($disertantes, [
+        "nombre" => $disertante_nombre,
+        "apellido" => $disertante_apellido,
+        "slug" => $disertante_slug
+      ]);
+    }
+
+    wp_reset_postdata();
+  }
+
+  echo '<div id="agenda-controls" class="mb-3">';
+  echo '<div class="row">';
+  echo '<div class="col-12 col-md-6 col-xl-4 mb-3">';
+  echo '<label for="filter-salon" class="form-label">Salón</label>';
+  echo '<select class="form-select jnd-filter" name="filter-salon" id="filter-salon" jnd-filter-target="jnd-salon">';
+  echo '<option value="all" selected>Todos los salones</option>';
+  foreach ($salones as $value => $label) {
+    echo '<option value="' . $value . '">' . $label . '</option>';
+  }
+  echo '</select>';
+  echo '</div>';
+
+  echo '<div class="col-12 col-md-6 col-xl-4 mb-3">';
+  echo '<label for="filter-especialidad" class="form-label">Especialidad</label>';
+  echo '<select class="form-select jnd-filter" name="filter-especialidad" id="filter-especialidad" jnd-filter-target="jnd-especialidad">';
+  echo '<option value="all" selected>Todas las especialidades</option>';
+
+  foreach ($especialidades as $especialidad) {
+    echo '<option value="' . $especialidad->slug . '">' . $especialidad->name . '</option>';
+  }
+
+  echo '</select>';
+  echo '</div>';
+
+  echo '<div class="col-12 col-md-6 col-xl-4 mb-3">';
+  echo '<label for="filter-disertante" class="form-label">Disertante</label>';
+  echo '<select class="form-select jnd-filter" name="filter-disertante" id="filter-disertante" jnd-filter-target="jnd-disertante">';
+  echo '<option value="all" selected>Todos los disertantes</option>';
+
+  foreach ($disertantes as $disertante) {
+    echo '<option value="' . $disertante['slug'] . '">' . $disertante['apellido'] . ', ' . $disertante['nombre'] . '</option>';
+  }
+
+  echo '</select>';
+  echo '</div>';
+  echo '</div>'; // .row
+  echo '<div class="row">';
+  echo '<div class="col-12 col-md-6 col-xl-4 mb-3">';
+  echo '<button type="button" class="btn btn-dark jnd-filter-reset">Limpiar filtros</button>';
+  echo '</div>'; // .col-12
+  echo '</div>'; // .row
+  echo '</div>'; // #agenda-controls
+
+  $args = [
+    'post_type' => 'conferencia',
+    'posts_per_page' => -1,
+    'orderby' => 'meta_value',
+    'meta_type' => 'DATETIME',
+    'meta_key' => 'inicio',
+    'order' => 'ASC'
+  ];
+
+  $query = new WP_Query($args);
+
+  if ($query->have_posts()) {
+    echo '<div id="agenda-events" class="text-bg-light rounded border-light">';
+    while ($query->have_posts()) {
+      $query->the_post();
+
+      $evt = [
+        "id" => get_the_ID(),
+        "title" => get_the_title(),
+        "start" => new DateTime(get_field('inicio')),
+        "end" => new DateTime(get_field('fin')),
+        "terms_objs" => get_the_terms(get_the_ID(), 'especialidad'),
+        "disertantes" => get_field('disertantes'),
+        "salon" => get_field('salon'),
+        "link" => get_the_permalink()
+      ];
+
+      $key_check = true;
+      foreach ($evt as $evt_key) {
+        if (! isset($evt_key)) {
+          $key_check = false;
+        }
+      }
+
+      if ($key_check) {
+        $especialidades_name = [];
+        $especialidades_slug = [];
+
+        foreach ($evt['terms_objs'] as $especialidad) {
+          array_push($especialidades_name, $especialidad->name);
+          array_push($especialidades_slug, $especialidad->slug);
+        }
+
+        $disertantes = [];
+        $disertantes_slug = [];
+
+        foreach ($evt['disertantes'] as $disertante) {
+          array_push($disertantes, $disertante->post_title);
+          array_push($disertantes_slug, $disertante->post_name);
+        }
+
+        echo '<div class="agenda-event py-3 d-block" jnd-salon="' . $evt['salon']['value'] . '" jnd-especialidad="' . implode(' ', $especialidades_slug) . '" jnd-disertante="' . implode(' ', $disertantes_slug) . '" jnd-event-id="' . $evt['id'] . '">';
+        echo '<div class="event-especialidades mb-1">';
+        foreach ($especialidades_name as $especialidad) {
+          echo '<span class="badge text-bg-secondary"><small>' . $especialidad . '</small></span>';
+        }
+        echo '</div>';
+        echo '<h3 class="h5"><a href="' . $evt['link'] . '">' . $evt['title'] . '</a></h3>';
+        echo '<p class="mb-0">';
+        echo '<span class="me-3 d-block d-md-inline"><i class="fa-solid fa-location-dot me-1"></i>' . $evt['salon']['label'] . '</span>';
+        echo '<span class="me-3 d-block d-md-inline"><i class="fa-regular fa-calendar-days me-1"></i>' . wp_date('j \d\e F \d\e Y', $evt['start']->getTimestamp()) . '</span>';
+        echo '<span class="d-block d-md-inline"><i class="fa-regular fa-clock me-1"></i>' . $evt['start']->format('H:i') . ' a ' . $evt['end']->format('H:i') . ' hs.</span>';
+        echo '</p>';
+        echo '</div>'; // .agenda-event
+      }
+    }
+    echo '</div>'; // #agenda-events
+  } else {
+    echo '<p>Contenidos no encontrados.</p>';
+  }
+
+  $output = ob_get_clean();
+
+  return $output;
+}
+
+add_shortcode('get_agenda_events', 'get_agenda_events');
