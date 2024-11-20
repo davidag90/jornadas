@@ -176,7 +176,7 @@ add_shortcode('cat_pre_order', 'cat_pre_order');
 function get_agenda_events() {
   ob_start();
 
-  $conferencia_fields = acf_get_fields('group_671964041a098');
+  $conferencia_fields = acf_get_fields('group_673e15fe9bfb2');
 
   $salones = [];
 
