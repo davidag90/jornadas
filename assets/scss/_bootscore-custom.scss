@@ -298,8 +298,15 @@ body:not(.home) #content {
 
 .event-details {
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   justify-content: start;
-  flex-wrap: wrap;
-  gap: 1.25rem;
+  align-items: start;
+  gap: 0.75rem;
+}
+
+@include media-breakpoint-up(md) {
+  .event-details {
+    flex-direction: row;
+    flex-wrap: wrap;
+  }
 }

@@ -287,7 +287,7 @@ function get_agenda_events() {
 
   if ($query->have_posts()) {
     echo '<div class="col-12">';
-    echo '<div id="agenda-events" class="text-bg-light rounded border-light px-3">';
+    echo '<div id="agenda-events">';
     while ($query->have_posts()) {
       $query->the_post();
 
@@ -326,19 +326,17 @@ function get_agenda_events() {
           array_push($disertantes_slug, $disertante->post_name);
         }
 
-        echo '<div class="agenda-event py-3 d-block" jnd-salon="' . $evt['salon']['value'] . '" jnd-especialidad="' . implode(' ', $especialidades_slug) . '" jnd-disertante="' . implode(' ', $disertantes_slug) . '" jnd-event-id="' . $evt['id'] . '">';
-        echo '<div class="event-especialidades mb-1">';
-        foreach ($especialidades_name as $especialidad) {
-          echo '<span class="badge text-bg-secondary"><small>' . $especialidad . '</small></span>';
-        }
-        echo '</div>';
-        echo '<h3 class="h5"><a href="' . $evt['link'] . '">' . $evt['title'] . '</a></h3>';
-        echo '<div class="event-details mb-0">';
+        echo '<div class="agenda-event mb-4 p-3 d-block border-start border-5 border-dark bg-light-subtle rounded-end" jnd-salon="' . $evt['salon']['value'] . '" jnd-especialidad="' . implode(' ', $especialidades_slug) . '" jnd-disertante="' . implode(' ', $disertantes_slug) . '" jnd-event-id="' . $evt['id'] . '">';
+        echo '<a href="' . $evt['link'] . '" class="text-decoration-none">';
+        echo '<h3 class="h5">' . $evt['title'] . '</h3>';
+        echo '<div class="event-details mb-0 text-dark">';
+        if ($especialidades_name) echo '<span><i class="fa-solid fa-book-bookmark me-2"></i>' . implode(', ', $especialidades_name) . '</span>';
         echo '<span><i class="fa-solid fa-location-dot me-2"></i>' . $evt['salon']['label'] . '</span>';
         echo '<span><i class="fa-solid fa-user me-2"></i>' . implode(', ', $disertantes) . '</span>';
         echo '<span><i class="fa-regular fa-calendar-days me-2"></i>' . wp_date('j \d\e F \d\e Y', $evt['start']->getTimestamp()) . '</span>';
         echo '<span><i class="fa-regular fa-clock me-2"></i>' . $evt['start']->format('H:i') . ' a ' . $evt['end']->format('H:i') . ' hs.</span>';
         echo '</div>'; // .event-details
+        echo '</a>';
         echo '</div>'; // .agenda-event
       }
     }
