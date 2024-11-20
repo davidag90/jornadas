@@ -295,3 +295,11 @@ body:not(.home) #content {
 #contact-sponsors a {
   color: $light;
 }
+
+.event-details {
+  display: flex;
+  flex-direction: row;
+  justify-content: start;
+  flex-wrap: wrap;
+  gap: 1.25rem;
+}

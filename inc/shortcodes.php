@@ -234,9 +234,9 @@ function get_agenda_events() {
   echo '<div id="agenda-controls" class="mb-3">';
   echo '<div class="row">';
   echo '<div class="col-12 col-md-6 col-xl-4 mb-3">';
-  echo '<label for="filter-salon" class="form-label">Salón</label>';
+  // echo '<label for="filter-salon" class="form-label">Salón</label>';
   echo '<select class="form-select jnd-filter" name="filter-salon" id="filter-salon" jnd-filter-target="jnd-salon">';
-  echo '<option value="all" selected>Todos los salones</option>';
+  echo '<option value="all" selected>Elegir un salón</option>';
   foreach ($salones as $value => $label) {
     echo '<option value="' . $value . '">' . $label . '</option>';
   }
@@ -244,9 +244,9 @@ function get_agenda_events() {
   echo '</div>';
 
   echo '<div class="col-12 col-md-6 col-xl-4 mb-3">';
-  echo '<label for="filter-especialidad" class="form-label">Especialidad</label>';
+  // echo '<label for="filter-especialidad" class="form-label">Especialidad</label>';
   echo '<select class="form-select jnd-filter" name="filter-especialidad" id="filter-especialidad" jnd-filter-target="jnd-especialidad">';
-  echo '<option value="all" selected>Todas las especialidades</option>';
+  echo '<option value="all" selected>Elegir una especialidad</option>';
 
   foreach ($especialidades as $especialidad) {
     echo '<option value="' . $especialidad->slug . '">' . $especialidad->name . '</option>';
@@ -256,9 +256,9 @@ function get_agenda_events() {
   echo '</div>';
 
   echo '<div class="col-12 col-md-6 col-xl-4 mb-3">';
-  echo '<label for="filter-disertante" class="form-label">Disertante</label>';
+  // echo '<label for="filter-disertante" class="form-label">Disertante</label>';
   echo '<select class="form-select jnd-filter" name="filter-disertante" id="filter-disertante" jnd-filter-target="jnd-disertante">';
-  echo '<option value="all" selected>Todos los disertantes</option>';
+  echo '<option value="all" selected>Elegir un disertante</option>';
 
   foreach ($disertantes as $disertante) {
     echo '<option value="' . $disertante['slug'] . '">' . $disertante['apellido'] . ', ' . $disertante['nombre'] . '</option>';
@@ -286,7 +286,8 @@ function get_agenda_events() {
   $query = new WP_Query($args);
 
   if ($query->have_posts()) {
-    echo '<div id="agenda-events" class="text-bg-light rounded border-light">';
+    echo '<div class="col-12">';
+    echo '<div id="agenda-events" class="text-bg-light rounded border-light px-3">';
     while ($query->have_posts()) {
       $query->the_post();
 
@@ -332,15 +333,17 @@ function get_agenda_events() {
         }
         echo '</div>';
         echo '<h3 class="h5"><a href="' . $evt['link'] . '">' . $evt['title'] . '</a></h3>';
-        echo '<p class="mb-0">';
-        echo '<span class="me-3 d-block d-md-inline"><i class="fa-solid fa-location-dot me-1"></i>' . $evt['salon']['label'] . '</span>';
-        echo '<span class="me-3 d-block d-md-inline"><i class="fa-regular fa-calendar-days me-1"></i>' . wp_date('j \d\e F \d\e Y', $evt['start']->getTimestamp()) . '</span>';
-        echo '<span class="d-block d-md-inline"><i class="fa-regular fa-clock me-1"></i>' . $evt['start']->format('H:i') . ' a ' . $evt['end']->format('H:i') . ' hs.</span>';
-        echo '</p>';
+        echo '<div class="event-details mb-0">';
+        echo '<span><i class="fa-solid fa-location-dot me-2"></i>' . $evt['salon']['label'] . '</span>';
+        echo '<span><i class="fa-solid fa-user me-2"></i>' . implode(', ', $disertantes) . '</span>';
+        echo '<span><i class="fa-regular fa-calendar-days me-2"></i>' . wp_date('j \d\e F \d\e Y', $evt['start']->getTimestamp()) . '</span>';
+        echo '<span><i class="fa-regular fa-clock me-2"></i>' . $evt['start']->format('H:i') . ' a ' . $evt['end']->format('H:i') . ' hs.</span>';
+        echo '</div>'; // .event-details
         echo '</div>'; // .agenda-event
       }
     }
     echo '</div>'; // #agenda-events
+    echo '</div>'; // .col-12
   } else {
     echo '<p>Contenidos no encontrados.</p>';
   }
