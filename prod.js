@@ -1,45 +1,20 @@
-const fs = require('fs');
-const path = require('path');
+const { promises: fs } = require("fs")
+const path = require("path")
 
-// Configuration - adjust these paths according to your project structure
-const config = {
-  dependencies: [
-    {
-      from: 'node_modules/flag-icons/css/flag-icons.min.css',
-      to: 'assets/vendor/flag-icons/css/flag-icons.min.css'
+async function copyDir(src, dest) {
+    await fs.mkdir(dest, { recursive: true });
+    let entries = await fs.readdir(src, { withFileTypes: true });
+
+    for (let entry of entries) {
+        let srcPath = path.join(src, entry.name);
+        let destPath = path.join(dest, entry.name);
+
+        entry.isDirectory() ?
+            await copyDir(srcPath, destPath) :
+            await fs.copyFile(srcPath, destPath);
     }
-    // Add more dependencies as needed
-  ],
-  // Ensure target directory exists
-  createTargetDirs: true
-};
-
-// Create directories if they don't exist
-function ensureDirectoryExists(filePath) {
-  const dirname = path.dirname(filePath);
-  if (fs.existsSync(dirname)) {
-    return;
-  }
-  fs.mkdirSync(dirname, { recursive: true });
 }
 
-// Copy files
-function copyDependencies() {
-  config.dependencies.forEach(dep => {
-    const sourcePath = path.resolve(dep.from);
-    const targetPath = path.resolve(dep.to);
-
-    if (config.createTargetDirs) {
-      ensureDirectoryExists(targetPath);
-    }
-
-    try {
-      fs.copyFileSync(sourcePath, targetPath);
-      console.log(`✓ Copied ${dep.from} to ${dep.to}`);
-    } catch (error) {
-      console.error(`✗ Failed to copy ${dep.from}: ${error.message}`);
-    }
-  });
-}
-
-copyDependencies();
+// Copy all Flag-Icons CSS and Flag files
+copyDir('./node_modules/flag-icons/css', './assets/vendor/flag-icons/css');
+copyDir('./node_modules/flag-icons/css', './assets/vendor/flag-icons/flags');
