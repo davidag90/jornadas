@@ -310,3 +310,8 @@ body:not(.home) #content {
     flex-wrap: wrap;
   }
 }
+
+#sponsors-map > img {
+  object-fit: cover;
+  object-position: top left;
+}
