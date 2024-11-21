@@ -299,7 +299,7 @@ function get_agenda_events() {
         "terms_objs" => get_the_terms(get_the_ID(), 'especialidad'),
         "disertantes" => get_field('disertantes'),
         "salon" => get_field('salon'),
-        "link" => get_the_permalink()
+        "link" => get_the_permalink(),
       ];
 
       $key_check = true;
@@ -322,7 +322,13 @@ function get_agenda_events() {
         $disertantes_slug = [];
 
         foreach ($evt['disertantes'] as $disertante) {
-          array_push($disertantes, $disertante->post_title);
+          array_push(
+            $disertantes,
+            array(
+              'nombre' => $disertante->post_title,
+              'nacionalidad' => get_field('nacionalidad', $disertante->ID)
+            )
+          );
           array_push($disertantes_slug, $disertante->post_name);
         }
 
@@ -332,7 +338,13 @@ function get_agenda_events() {
         echo '<div class="event-details mb-0 text-dark">';
         if ($especialidades_name) echo '<span><i class="fa-solid fa-book-bookmark me-2"></i>' . implode(', ', $especialidades_name) . '</span>';
         echo '<span><i class="fa-solid fa-location-dot me-2"></i>' . $evt['salon']['label'] . '</span>';
-        echo '<span><i class="fa-solid fa-user me-2"></i>' . implode(', ', $disertantes) . '</span>';
+        echo '<span>';
+
+        foreach ($disertantes as $disertante) {
+          echo '<span class="d-block d-md-inline me-2"><span class="fi fi-' . $disertante['nacionalidad'] . ' me-1"></span>' . $disertante['nombre'] . '</span>';
+        }
+
+        echo '</span>';
         echo '<span><i class="fa-regular fa-calendar-days me-2"></i>' . wp_date('j \d\e F \d\e Y', $evt['start']->getTimestamp()) . '</span>';
         echo '<span><i class="fa-regular fa-clock me-2"></i>' . $evt['start']->format('H:i') . ' a ' . $evt['end']->format('H:i') . ' hs.</span>';
         echo '</div>'; // .event-details
