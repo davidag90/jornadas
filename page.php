@@ -5,7 +5,7 @@ defined('ABSPATH') || exit;
 get_header();
 ?>
 
-<div id="content" class="site-content pt-5 text-light <?= apply_filters('bootscore/class/container', 'container-fluid'); ?>">
+<div id="content" class="site-content pt-4 text-light <?= apply_filters('bootscore/class/container', 'container-fluid'); ?>">
   <div id="primary" class="content-area">
     <main id="main" class="site-main">
       <div class="entry-header">
