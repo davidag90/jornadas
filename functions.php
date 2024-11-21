@@ -36,7 +36,7 @@ function bootscore_child_enqueue_styles() {
 
   if (is_page('agenda')) {
     wp_enqueue_script('agenda-js', get_stylesheet_directory_uri() . '/assets/js/agenda.js', array(), null, true);
-    wp_enqueue_style('flag-icons', get_template_directory_uri() . '/assets/vendor/flag-icons/css/flag-icons.min.css');
+    wp_enqueue_style('flag-icons', get_stylesheet_directory_uri() . '/assets/vendor/flag-icons/css/flag-icons.min.css');
   }
 }
 
