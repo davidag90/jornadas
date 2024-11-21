@@ -17,4 +17,4 @@ async function copyDir(src, dest) {
 
 // Copy all Flag-Icons CSS and Flag files
 copyDir('./node_modules/flag-icons/css', './assets/vendor/flag-icons/css');
-copyDir('./node_modules/flag-icons/css', './assets/vendor/flag-icons/flags');
+copyDir('./node_modules/flag-icons/flags', './assets/vendor/flag-icons/flags');
