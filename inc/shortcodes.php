@@ -77,14 +77,12 @@ add_shortcode('show_disertantes', 'show_disertantes');
 function show_sponsors_logos() {
   ob_start();
 
-  $args = [
+  $query = new WP_Query([
     'post_type' => 'sponsor',
     'posts_per_page' => -1,
     'order' => 'ASC',
     'orderby' => 'title'
-  ];
-
-  $query = new WP_Query($args);
+  ]);
 
   if ($query->have_posts()) {
     echo '<div class="sponsors-container">';
@@ -113,7 +111,6 @@ function show_sponsors_logos() {
 }
 
 add_shortcode('show_sponsors_logos', 'show_sponsors_logos');
-
 
 function cat_pre_order() {
   ob_start();
@@ -227,9 +224,19 @@ function get_agenda_events() {
         "slug" => $disertante_slug
       ]);
     }
-
-    wp_reset_postdata();
   }
+
+  wp_reset_postdata();
+
+  $query_program = new WP_Query([
+    'post_type' => 'attachment',
+    'post_status' => 'any',
+    'name' => 'programa-completo'
+  ]);
+
+  $url_program = get_permalink($query_program->post);
+
+  wp_reset_postdata();
 
   echo '<div id="agenda-controls" class="mb-3">';
   echo '<div class="row">';
@@ -244,7 +251,6 @@ function get_agenda_events() {
   echo '</div>';
 
   echo '<div class="col-12 col-md-6 col-xl-4 mb-3">';
-  // echo '<label for="filter-especialidad" class="form-label">Especialidad</label>';
   echo '<select class="form-select jnd-filter" name="filter-especialidad" id="filter-especialidad" jnd-filter-target="jnd-especialidad">';
   echo '<option value="all" selected>Elegir una especialidad</option>';
 
@@ -256,7 +262,6 @@ function get_agenda_events() {
   echo '</div>';
 
   echo '<div class="col-12 col-md-6 col-xl-4 mb-3">';
-  // echo '<label for="filter-disertante" class="form-label">Disertante</label>';
   echo '<select class="form-select jnd-filter" name="filter-disertante" id="filter-disertante" jnd-filter-target="jnd-disertante">';
   echo '<option value="all" selected>Elegir un disertante</option>';
 
@@ -270,6 +275,7 @@ function get_agenda_events() {
   echo '<div class="row">';
   echo '<div class="col-12 col-md-6 col-xl-4 mb-3">';
   echo '<button type="button" class="btn btn-dark jnd-filter-reset">Limpiar filtros</button>';
+  if ($url_program) echo '<a href="' . $url_program . '" target="_blank" class="btn btn-warning ms-1">Descargar programa</button>';
   echo '</div>'; // .col-12
   echo '</div>'; // .row
   echo '</div>'; // #agenda-controls
