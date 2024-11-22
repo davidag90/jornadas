@@ -4,9 +4,11 @@ defined('ABSPATH') || exit;
 ?>
 
 <footer id="main-footer">
-  <div id="credits" class="w-100 d-flex justify-content-center align-items-center bg-primary-subtle text-dark bg-gradient py-2">
-    <div>Organiza <a href="https://coc-cordoba.org.ar/" target="_blank"><img src="<?php echo get_stylesheet_directory_uri(); ?>/assets/img/footer/coc.png" alt="Circulo Odontológico de Córdoba"></a></div>
-  </div>
+  <?php if (is_front_page()): ?>
+    <div id="credits" class="w-100 d-flex justify-content-center align-items-center bg-primary-subtle text-dark bg-gradient py-2">
+      <div>Organiza <a href="https://coc-cordoba.org.ar/" target="_blank"><img src="<?php echo get_stylesheet_directory_uri(); ?>/assets/img/footer/coc.png" alt="Circulo Odontológico de Córdoba"></a></div>
+    </div>
+  <?php endif; ?>
 
   <nav class="navbar fixed-bottom bg-primary py-0">
     <div class="container-fluid justify-content-center border-top border-2 border-primary-subtle">
