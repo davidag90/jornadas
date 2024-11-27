@@ -29,7 +29,7 @@ function show_disertantes() {
     while ($query->have_posts()) {
       $query->the_post();
       $conferencias = get_field('conferencias');
-
+      $flag = get_field('nacionalidad');
       $thumb = get_the_post_thumbnail_url();
 
       if (!$thumb) {
@@ -43,7 +43,7 @@ function show_disertantes() {
       echo '<img src="' . $thumb . '" class="rounded-circle border border-warning border-5" />';
       echo '</div>'; // .col-4
       echo '<div class="col-8 d-flex flex-column justify-content-center">';
-      echo '<h2 class="h5">' . get_the_title() . '</h2>';
+      echo '<h2 class="h5"><span class="fi fi-' . $flag . ' me-1"></span>' . get_the_title() . '</h2>';
       if ($conferencias) {
         echo '<ul>';
         foreach ($conferencias as $conferencia) {
