@@ -275,7 +275,7 @@ function get_agenda_events() {
   echo '<div class="row">';
   echo '<div class="col-12 col-md-6 col-xl-4 mb-3">';
   echo '<button type="button" class="btn btn-dark jnd-filter-reset">Limpiar filtros</button>';
-  if ($url_program) echo '<a href="' . $url_program . '" target="_blank" class="btn btn-warning ms-1">Descargar programa</button>';
+  if ($url_program) echo '<a href="' . $url_program . '" target="_blank" class="btn btn-warning ms-1">Descargar programa</a>';
   echo '</div>'; // .col-12
   echo '</div>'; // .row
   echo '</div>'; // #agenda-controls
