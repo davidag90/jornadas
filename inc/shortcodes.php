@@ -16,7 +16,7 @@ function show_disertantes() {
   echo '</div>'; // #search-disertantes
   echo '</div>'; // .col-12
 
-  $query_ext = new WP_Query([
+  $query_ext_high = new WP_Query([
     'post_type' => 'disertante',
     'posts_per_page' => -1,
     'meta_query' => [
@@ -29,6 +29,74 @@ function show_disertantes() {
       'prio_clause' => [
         'key' => 'prioridad',
         'compare' => 'EXISTS'
+      ],
+      'order_clause' => [
+        'key' => 'orden',
+        'compare' => 'EXISTS'
+      ]
+    ],
+    'orderby' => 'meta_value_num',
+    'meta_key' => 'orden',
+    'order' => 'ASC'
+  ]);
+
+
+  if ($query_ext_high->have_posts()) {
+    while ($query_ext_high->have_posts()) {
+      $query_ext_high->the_post();
+      $conferencias = get_field('conferencias');
+      $flag = get_field('nacionalidad');
+      $thumb = get_the_post_thumbnail_url();
+
+      if (!$thumb) {
+        $thumb = get_stylesheet_directory_uri() . '/assets/img/placeholder.jpg';
+      }
+
+      echo '<div class="col-12 col-md-6 col-xl-4">';
+      echo '<div class="disertante text-light mb-4 pb-4">';
+      echo '<div class="row">';
+      echo '<div class="col-4 d-flex flex-column justify-content-center">';
+      echo '<img src="' . $thumb . '" class="rounded-circle border border-warning border-5" />';
+      echo '</div>'; // .col-4
+      echo '<div class="col-8 d-flex flex-column justify-content-center">';
+      echo '<h2 class="h5"><span class="fi fi-' . $flag . ' me-2"></span>' . get_the_title() . '</h2>';
+      if ($conferencias) {
+        echo '<ul>';
+        foreach ($conferencias as $conferencia) {
+          $id = $conferencia->ID;
+
+          $title = get_the_title($id);
+          $permalink = get_the_permalink($id);
+
+          echo '<li>';
+          echo '<a class="link-light text-decoration-none" href="' . $permalink . '"><i class="fa-solid fa-asterisk fa-xs me-1"></i>' . $title . '</a>';
+          echo '</li>';
+        }
+        echo '</ul>';
+      }
+      echo '</div>'; // .col-8
+      echo '</div>'; // .row
+      echo '</div>'; // .disertante
+      echo '</div>'; // col-12 col-md-4 col-xl-3
+    }
+  }
+
+  wp_reset_postdata();
+
+  $query_ext = new WP_Query([
+    'post_type' => 'disertante',
+    'posts_per_page' => -1,
+    'meta_query' => [
+      'relation' => 'AND',
+      'nac_clause' => [
+        'key' => 'nacionalidad',
+        'value' => 'ar',
+        'compare' => 'NOT LIKE'
+      ],
+      'prio_clause' => [
+        'key' => 'prioridad',
+        'compare' => 'LIKE',
+        'value' => 'no-prioritario'
       ],
       'ap_clause' => [
         'key' => 'apellido',
