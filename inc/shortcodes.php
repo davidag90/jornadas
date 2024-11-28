@@ -30,7 +30,7 @@ function show_disertantes() {
     'meta_key' => 'prioridad',
     'order' => [
       'prioridad' => 'DESC',
-      'title' => 'ASC'
+      'apellido' => 'ASC'
     ]
   ]);
 
@@ -80,17 +80,29 @@ function show_disertantes() {
     'post_type' => 'disertante',
     'posts_per_page' => -1,
     'meta_query' => [
-      array(
+      'relation' => 'AND',
+      'nac_clause' => [
         'key' => 'nacionalidad',
         'value' => 'ar',
         'compare' => 'LIKE'
-      )
+      ],
+      'prio_clause' => [
+        'key' => 'prioridad',
+        'compare' => 'EXISTS'
+      ],
+      'ap_clause' => [
+        'key' => 'apellido',
+        'compare' => 'EXISTS'
+      ]
     ],
-    'orderby' => 'meta_value',
+    'orderby' => [
+      'prio_clause' => 'DESC',
+      'ap_clause' => 'ASC'
+    ],
     'meta_key' => 'prioridad',
     'order' => [
       'prioridad' => 'DESC',
-      'title' => 'ASC'
+      'apellido' => 'ASC'
     ]
   ]);
 
