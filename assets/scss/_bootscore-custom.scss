@@ -326,3 +326,7 @@ body:not(.home) #content {
 .disertante .fi {
   box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
 }
+
+.actividades #content a {
+  color: $light;
+}
