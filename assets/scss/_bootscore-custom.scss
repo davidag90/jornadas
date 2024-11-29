@@ -330,3 +330,30 @@ body:not(.home) #content {
 .actividades #content a {
   color: $light;
 }
+
+.comite-cirugia {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: $spacer * 1.5;
+}
+
+.comite-cirugia h3 {
+  font-size: 1.25rem;
+}
+
+@include media-breakpoint-up(md) {
+  .comite-cirugia {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@include media-breakpoint-up(lg) {
+  .comite-cirugia {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+.comite-cirugia > div {
+  border-left: 5px solid rgba(255, 255, 255, 0.25);
+  padding-left: 1rem;
+}
