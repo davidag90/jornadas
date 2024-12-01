@@ -331,29 +331,29 @@ body:not(.home) #content {
   color: $light;
 }
 
-.comite {
+.comision {
   display: grid;
   grid-template-columns: 1fr;
   gap: $spacer * 1.5;
 }
 
 @include media-breakpoint-up(md) {
-  .comite {
+  .comision {
     grid-template-columns: repeat(2, 1fr);
   }
 }
 
 @include media-breakpoint-up(lg) {
-  .comite {
+  .comision {
     grid-template-columns: repeat(3, 1fr);
   }
 }
 
-.comite > div {
+.comision > div {
   border-left: 5px solid rgba(255, 255, 255, 0.25);
   padding-left: 1rem;
 }
 
-.comite > div > h3 {
+.comision > div > h3 {
   font-size: 1.25rem;
 }
