@@ -357,3 +357,7 @@ body:not(.home) #content {
 .comision > div > h3 {
   font-size: 1.25rem;
 }
+
+.woocommerce .woocommerce-customer-details address {
+  background: rgba(0, 0, 0, 0.1);
+}
