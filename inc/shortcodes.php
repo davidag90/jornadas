@@ -307,7 +307,7 @@ function cat_pre_order() {
         echo '<option value="' . $variation_product->get_id() . '">' . $variation_product->get_attribute('categoria') . '</option>';
       }
       echo '</select>';
-      echo '<div id="cat_inscripcion_help" class="form-text">Por favor, elija con cuidado la categoría de inscripción adecuada, recuerde que pos-inscripción deberá acreditarla ante el personal del evento</div>';
+      echo '<div id="cat_inscripcion_help" class="form-text text-light">Por favor, elija con cuidado la categoría de inscripción adecuada, recuerde que pos-inscripción deberá acreditarla ante el personal del evento</div>';
       echo '</div>'; // .mb-3
       echo '<div class="mb-3">';
       echo '<a id="btn_pre_order" class="btn btn-warning disabled" href="' . esc_url(home_url() . '/finalizar-compra/?add-to-cart=') . '">Iniciar inscripción <i class="fa-solid fa-caret-right"></i></a>';
