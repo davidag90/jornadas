@@ -5,7 +5,7 @@ defined('ABSPATH') || exit;
 function show_disertantes() {
   ob_start();
 
-  echo '<div class="col-12">';
+  /*   echo '<div class="col-12">';
   echo '<div id="search-disertantes" class="mb-5">';
   echo '<form>';
   echo '<div class="input-group">';
@@ -14,7 +14,7 @@ function show_disertantes() {
   echo '</div>';
   echo '</form>';
   echo '</div>'; // #search-disertantes
-  echo '</div>'; // .col-12
+  echo '</div>'; // .col-12 */
 
   $query_ext_high = new WP_Query([
     'post_type' => 'disertante',
