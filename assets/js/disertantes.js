@@ -8,12 +8,15 @@ searchbox.addEventListener('input', event => {
 
 function queryDisertante(searchQuery) {
   const disertantes = document.querySelectorAll('.disertante');
+  const searchQueryLower = searchQuery.toLowerCase();
 
   disertantes.forEach(element => {
     element.classList.remove('d-block');
     element.classList.add('d-none');
 
-    if (element.textContent.includes(searchQuery)) {
+    let toSearch = element.textContent.toLowerCase();
+
+    if (toSearch.includes(searchQueryLower)) {
       element.classList.add('d-block');
       element.classList.remove('d-none');
     }
