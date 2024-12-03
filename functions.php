@@ -41,6 +41,7 @@ function bootscore_child_enqueue_styles() {
 
   if (is_page('disertantes')) {
     wp_enqueue_style('flag-icons', get_stylesheet_directory_uri() . '/assets/vendor/flag-icons/css/flag-icons.min.css');
+    wp_enqueue_script('disertantes-js', get_stylesheet_directory_uri() . '/assets/js/disertantes.js', array(), null, true);
   }
 }
 

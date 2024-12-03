@@ -5,7 +5,7 @@ defined('ABSPATH') || exit;
 function show_disertantes() {
   ob_start();
 
-  /*   echo '<div class="col-12">';
+  echo '<div class="col-12">';
   echo '<div id="search-disertantes" class="mb-5">';
   echo '<form>';
   echo '<div class="input-group">';
@@ -14,7 +14,7 @@ function show_disertantes() {
   echo '</div>';
   echo '</form>';
   echo '</div>'; // #search-disertantes
-  echo '</div>'; // .col-12 */
+  echo '</div>'; // .col-12
 
   $query_ext_high = new WP_Query([
     'post_type' => 'disertante',
@@ -52,8 +52,8 @@ function show_disertantes() {
         $thumb = get_stylesheet_directory_uri() . '/assets/img/placeholder.jpg';
       }
 
-      echo '<div class="col-12 col-md-6 col-xl-4">';
-      echo '<div class="disertante text-light mb-4 pb-4">';
+      echo '<div class="disertante col-12 col-md-6 col-xl-4">';
+      echo '<div class="text-light mb-4 pb-4">';
       echo '<div class="row">';
       echo '<div class="col-4 d-flex flex-column justify-content-center">';
       echo '<img src="' . $thumb . '" class="rounded-circle border border-warning border-5" />';
@@ -126,8 +126,8 @@ function show_disertantes() {
         $thumb = get_stylesheet_directory_uri() . '/assets/img/placeholder.jpg';
       }
 
-      echo '<div class="col-12 col-md-6 col-xl-4">';
-      echo '<div class="disertante text-light mb-4 pb-4">';
+      echo '<div class="disertante col-12 col-md-6 col-xl-4">';
+      echo '<div class="text-light mb-4 pb-4">';
       echo '<div class="row">';
       echo '<div class="col-4 d-flex flex-column justify-content-center">';
       echo '<img src="' . $thumb . '" class="rounded-circle border border-warning border-5" />';
@@ -198,8 +198,8 @@ function show_disertantes() {
         $thumb = get_stylesheet_directory_uri() . '/assets/img/placeholder.jpg';
       }
 
-      echo '<div class="col-12 col-md-6 col-xl-4">';
-      echo '<div class="disertante text-light mb-4 pb-4">';
+      echo '<div class="disertante col-12 col-md-6 col-xl-4">';
+      echo '<div class="text-light mb-4 pb-4">';
       echo '<div class="row">';
       echo '<div class="col-4 d-flex flex-column justify-content-center">';
       echo '<img src="' . $thumb . '" class="rounded-circle border border-warning border-5" />';
