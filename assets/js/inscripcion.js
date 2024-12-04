@@ -17,11 +17,15 @@ function createOrderURL(event) {
     }
 }
 
-const tableArancelesWrapper = document.getElementById('aranceles-table');
-const tableAranceles = document.querySelector('#aranceles-table > table');
-const tableArancelesHeads = document.querySelector('#aranceles-table > table > thead');
+const styleTables = () => {
+    const tableArancelesWrapper = document.getElementById('aranceles-table');
+    const tableAranceles = document.querySelector('#aranceles-table > table');
+    const tableArancelesHeads = document.querySelector('#aranceles-table > table > thead');
+    
+    tableArancelesWrapper.setAttribute('class', 'w-100');
+    tableAranceles.classList.remove('has-fixed-layout');
+    tableAranceles.classList.add('table', 'table-light', 'table-striped');
+    tableArancelesHeads.classList.add('table-dark');
+};
 
-tableArancelesWrapper.setAttribute('class', 'w-100');
-tableAranceles.classList.remove('has-fixed-layout');
-tableAranceles.classList.add('table', 'table-light', 'table-striped');
-tableArancelesHeads.classList.add('table-dark');
+document.addEventListener('DOMContentLoaded', styleTables);
