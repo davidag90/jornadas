@@ -19,8 +19,9 @@ function createOrderURL(event) {
 
 const tableArancelesWrapper = document.getElementById('aranceles-table');
 const tableAranceles = document.querySelector('#aranceles-table > table');
+const tableArancelesHeads = document.querySelector('#aranceles-table > table > thead');
 
 tableArancelesWrapper.setAttribute('class', 'w-100');
 tableAranceles.classList.remove('has-fixed-layout');
-tableAranceles.classList.add('table');
-tableAranceles.classList.add('table-light');
+tableAranceles.classList.add('table', 'table-light', 'table-striped');
+tableArancelesHeads.classList.add('table-dark');
