@@ -46,6 +46,7 @@ function show_disertantes()
   if ($query_ext_high->have_posts()) {
     while ($query_ext_high->have_posts()) {
       $query_ext_high->the_post();
+      $especialidades = get_field('especialidad');
       $conferencias = get_field('conferencias');
       $flag = get_field('nacionalidad');
       $thumb = get_the_post_thumbnail_url();
@@ -62,6 +63,17 @@ function show_disertantes()
       echo '</div>'; // .col-4
       echo '<div class="col-8 d-flex flex-column justify-content-center">';
       echo '<h2 class="h5"><span class="fi fi-' . $flag . ' me-2"></span>' . get_the_title() . '</h2>';
+
+      if ($especialidades) {
+        $especialidades_name = [];
+
+        foreach ($especialidades as $especialidad) {
+          array_push($especialidades_name, $especialidad->name);
+        }
+
+        echo '<p class="text-uppercase">' . implode(' - ', $especialidades_name) . '</p>';
+      }
+
       if ($conferencias) {
         echo '<ul>';
         foreach ($conferencias as $conferencia) {
@@ -120,6 +132,7 @@ function show_disertantes()
   if ($query_ext->have_posts()) {
     while ($query_ext->have_posts()) {
       $query_ext->the_post();
+      $especialidades = get_field('especialidad');
       $conferencias = get_field('conferencias');
       $flag = get_field('nacionalidad');
       $thumb = get_the_post_thumbnail_url();
@@ -136,6 +149,17 @@ function show_disertantes()
       echo '</div>'; // .col-4
       echo '<div class="col-8 d-flex flex-column justify-content-center">';
       echo '<h2 class="h5"><span class="fi fi-' . $flag . ' me-2"></span>' . get_the_title() . '</h2>';
+
+      if ($especialidades) {
+        $especialidades_name = [];
+
+        foreach ($especialidades as $especialidad) {
+          array_push($especialidades_name, $especialidad->name);
+        }
+
+        echo '<p class="text-uppercase">' . implode(' - ', $especialidades_name) . '</p>';
+      }
+
       if ($conferencias) {
         echo '<ul>';
         foreach ($conferencias as $conferencia) {
@@ -193,6 +217,7 @@ function show_disertantes()
     while ($query_arg->have_posts()) {
       $query_arg->the_post();
       $conferencias = get_field('conferencias');
+      $especialidades = get_field('especialidad');
       $flag = get_field('nacionalidad');
       $thumb = get_the_post_thumbnail_url();
 
@@ -221,6 +246,16 @@ function show_disertantes()
           echo '</li>';
         }
         echo '</ul>';
+      }
+
+      if ($especialidades) {
+        $especialidades_name = [];
+
+        foreach ($especialidades as $especialidad) {
+          array_push($especialidades_name, $especialidad->name);
+        }
+
+        echo '<p class="text-uppercase">' . implode(' - ', $especialidades_name) . '</p>';
       }
       echo '</div>'; // .col-8
       echo '</div>'; // .row
