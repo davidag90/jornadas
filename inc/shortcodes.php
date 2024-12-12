@@ -2,7 +2,8 @@
 // Exit if accessed directly
 defined('ABSPATH') || exit;
 
-function show_disertantes() {
+function show_disertantes()
+{
   ob_start();
 
   echo '<div class="col-12">';
@@ -28,7 +29,8 @@ function show_disertantes() {
       ],
       'prio_clause' => [
         'key' => 'prioridad',
-        'compare' => 'EXISTS'
+        'compare' => '=',
+        'value' => 'prioritario'
       ],
       'order_clause' => [
         'key' => 'orden',
@@ -234,7 +236,8 @@ function show_disertantes() {
 
 add_shortcode('show_disertantes', 'show_disertantes');
 
-function show_sponsors_logos() {
+function show_sponsors_logos()
+{
   ob_start();
 
   $query = new WP_Query([
@@ -272,7 +275,8 @@ function show_sponsors_logos() {
 
 add_shortcode('show_sponsors_logos', 'show_sponsors_logos');
 
-function cat_pre_order() {
+function cat_pre_order()
+{
   ob_start();
 
   $products = wc_get_products([
@@ -330,7 +334,8 @@ function cat_pre_order() {
 add_shortcode('cat_pre_order', 'cat_pre_order');
 
 
-function get_agenda_events() {
+function get_agenda_events()
+{
   ob_start();
 
   $conferencia_fields = acf_get_fields('group_673e15fe9bfb2');
