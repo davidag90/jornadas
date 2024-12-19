@@ -570,3 +570,38 @@ function get_agenda_events()
 }
 
 add_shortcode('get_agenda_events', 'get_agenda_events');
+
+function show_frontpage_destacado()
+{
+  ob_start();
+
+  $query = new WP_Query([
+    'post_type' => 'destacado',
+    'posts_per_page' => '1'
+  ]);
+
+  if ($query->have_posts()) {
+    echo '<div id="front-page-highlight">';
+    while ($query->have_posts()) {
+      $query->the_post();
+
+      $link = get_field('link');
+      $img_mobile = get_field('img_mobile');
+      $img_desktop = get_field('img_desktop');
+
+      if ($link) echo '<a href="' . $link . '" class="front-page-highlight__link" target="_blank">';
+      echo '<picture>';
+      echo '<source srcset="' . esc_url($img_mobile) . '" class="d-block w-100" media="(max-width:768px)">';
+      echo '<img src="' . esc_url($img_desktop) . '" class="d-block w-100">';
+      echo '</picture>';
+      if ($link) echo '</a>'; // .front-page-highlight__link
+    }
+    echo '</div>';
+  }
+
+  $output = ob_get_clean();
+
+  return $output;
+}
+
+add_shortcode('show_frontpage_destacado', 'show_frontpage_destacado');
