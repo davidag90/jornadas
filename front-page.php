@@ -25,6 +25,7 @@ get_header();
             </div><!-- .logos -->
             <div id="fecha" class="text-uppercase text-center fw-bold">
               24, 25 y 26 <br class="d-md-none">de Septiembre de 2025
+              <br><span class="fs-6">Córdoba, Argentina</span>
             </div>
             <div id="inscripcion">
               <a href="<?php echo home_url(); ?>/inscripciones" class="btn btn-warning btn-lg"><i class="fa-solid fa-pencil-square me-1"></i> Inscripciones</a>
