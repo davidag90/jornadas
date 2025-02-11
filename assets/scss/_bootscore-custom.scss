@@ -140,18 +140,20 @@ body:not(.home) #content {
   opacity: 0.75;
 }
 
-.sponsors-container {
+.sponsors-container, .instituciones-container {
   display: flex;
   gap: $spacer $spacer * 1.5;
   flex-wrap: wrap;
   place-content: center;
 }
 
-.sponsors-container .sponsor a {
+.sponsors-container .sponsor a,
+.instituciones-container .institucion a {
   display: block;
 }
 
-.sponsors-container .sponsor img {
+.sponsors-container .sponsor img,
+.instituciones-container .institucion img {
   aspect-ratio: 16/10;
   width: clamp(120px, 140px, 160px);
   object-fit: contain;
@@ -364,4 +366,8 @@ body:not(.home) #content {
 
 .inscripciones .entry-content p a {
   color: $light;
+}
+
+.payment_method_macro_click > label > img {
+  height: 32px;
 }
