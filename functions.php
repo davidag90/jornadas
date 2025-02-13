@@ -44,6 +44,10 @@ function bootscore_child_enqueue_styles()
     wp_enqueue_style('flag-icons', get_stylesheet_directory_uri() . '/assets/vendor/flag-icons/css/flag-icons.min.css');
     wp_enqueue_script('disertantes-js', get_stylesheet_directory_uri() . '/assets/js/disertantes.js', array(), null, true);
   }
+
+  if (is_checkout()) {
+    wp_enqueue_script('j23-checkout', get_stylesheet_directory_uri() . '/assets/js/j23-checkout.js', array(), null, true);
+  }
 }
 
 // Add custom shortcodes for custom post type showing
