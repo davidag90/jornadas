@@ -271,6 +271,8 @@ function show_disertantes()
 
 add_shortcode('show_disertantes', 'show_disertantes');
 
+
+
 function show_sponsors_logos()
 {
   ob_start();
@@ -298,7 +300,7 @@ function show_sponsors_logos()
       echo '</div>'; // .sponsor
     }
 
-    echo '</div>'; // .sponsors-containers
+    echo '</div>'; // .sponsors-container
   }
 
   wp_reset_postdata();
@@ -309,6 +311,48 @@ function show_sponsors_logos()
 }
 
 add_shortcode('show_sponsors_logos', 'show_sponsors_logos');
+
+
+function show_adhesiones()
+{
+  ob_start();
+
+  $query = new WP_Query([
+    'post_type' => 'adhesion',
+    'posts_per_page' => -1,
+    'order' => 'ASC',
+    'orderby' => 'title'
+  ]);
+
+  if ($query->have_posts()) {
+    echo '<div class="instituciones-container">';
+    while ($query->have_posts()) {
+      $query->the_post();
+
+      $name = get_the_title();
+      $link = get_field('link');
+      $logo = get_the_post_thumbnail_url();
+
+      echo '<div class="institucion">';
+      if ($link) echo '<a href="' . $link . '" target="_blank" rel="noopener noreferrer">';
+      echo '<img src="' . $logo . '" alt="' . $name . '" />';
+      if ($link) echo '</a>';
+      echo '</div>'; // .institucion
+    }
+
+    echo '</div>'; // .instituciones-container
+  }
+
+  wp_reset_postdata();
+
+  $output = ob_get_clean();
+
+  return $output;
+}
+
+add_shortcode('show_adhesiones', 'show_adhesiones');
+
+
 
 function cat_pre_order()
 {
@@ -367,6 +411,7 @@ function cat_pre_order()
 }
 
 add_shortcode('cat_pre_order', 'cat_pre_order');
+
 
 
 function get_agenda_events()
@@ -571,13 +616,15 @@ function get_agenda_events()
 
 add_shortcode('get_agenda_events', 'get_agenda_events');
 
+
+
 function show_frontpage_destacado()
 {
   ob_start();
 
   $query = new WP_Query([
     'post_type' => 'destacado',
-    'posts_per_page' => '1'
+    'posts_per_page' => '-1'
   ]);
 
   if ($query->have_posts()) {
@@ -591,8 +638,8 @@ function show_frontpage_destacado()
 
       if ($link) echo '<a href="' . $link . '" class="front-page-highlight__link" target="_blank">';
       echo '<picture>';
-      echo '<source srcset="' . esc_url($img_mobile) . '" class="d-block w-100" media="(max-width:768px)">';
-      echo '<img src="' . esc_url($img_desktop) . '" class="d-block w-100">';
+      echo '<source srcset="' . esc_url($img_mobile) . '" class="d-block w-100 front-page-highlight__mobile" media="(max-width:768px)">';
+      echo '<img src="' . esc_url($img_desktop) . '" class="d-block w-100 front-page-highlight__desktop">';
       echo '</picture>';
       if ($link) echo '</a>'; // .front-page-highlight__link
     }
