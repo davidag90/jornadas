@@ -8,35 +8,46 @@
 
 /* albert-sans-regular - latin */
 @font-face {
-  font-display: swap; /* Check https://developer.mozilla.org/en-US/docs/Web/CSS/@font-face/font-display for other options. */
+  font-display: swap;
+  /* Check https://developer.mozilla.org/en-US/docs/Web/CSS/@font-face/font-display for other options. */
   font-family: "Albert Sans";
   font-style: normal;
   font-weight: 400;
-  src: url("../fonts/albert-sans-v1-latin-regular.woff2") format("woff2"); /* Chrome 36+, Opera 23+, Firefox 39+, Safari 12+, iOS 10+ */
+  src: url("../fonts/albert-sans-v1-latin-regular.woff2") format("woff2");
+  /* Chrome 36+, Opera 23+, Firefox 39+, Safari 12+, iOS 10+ */
 }
+
 /* albert-sans-italic - latin */
 @font-face {
-  font-display: swap; /* Check https://developer.mozilla.org/en-US/docs/Web/CSS/@font-face/font-display for other options. */
+  font-display: swap;
+  /* Check https://developer.mozilla.org/en-US/docs/Web/CSS/@font-face/font-display for other options. */
   font-family: "Albert Sans";
   font-style: italic;
   font-weight: 400;
-  src: url("../fonts/albert-sans-v1-latin-italic.woff2") format("woff2"); /* Chrome 36+, Opera 23+, Firefox 39+, Safari 12+, iOS 10+ */
+  src: url("../fonts/albert-sans-v1-latin-italic.woff2") format("woff2");
+  /* Chrome 36+, Opera 23+, Firefox 39+, Safari 12+, iOS 10+ */
 }
+
 /* albert-sans-700 - latin */
 @font-face {
-  font-display: swap; /* Check https://developer.mozilla.org/en-US/docs/Web/CSS/@font-face/font-display for other options. */
+  font-display: swap;
+  /* Check https://developer.mozilla.org/en-US/docs/Web/CSS/@font-face/font-display for other options. */
   font-family: "Albert Sans";
   font-style: normal;
   font-weight: 700;
-  src: url("../fonts/albert-sans-v1-latin-700.woff2") format("woff2"); /* Chrome 36+, Opera 23+, Firefox 39+, Safari 12+, iOS 10+ */
+  src: url("../fonts/albert-sans-v1-latin-700.woff2") format("woff2");
+  /* Chrome 36+, Opera 23+, Firefox 39+, Safari 12+, iOS 10+ */
 }
+
 /* albert-sans-700italic - latin */
 @font-face {
-  font-display: swap; /* Check https://developer.mozilla.org/en-US/docs/Web/CSS/@font-face/font-display for other options. */
+  font-display: swap;
+  /* Check https://developer.mozilla.org/en-US/docs/Web/CSS/@font-face/font-display for other options. */
   font-family: "Albert Sans";
   font-style: italic;
   font-weight: 700;
-  src: url("../fonts/albert-sans-v1-latin-700italic.woff2") format("woff2"); /* Chrome 36+, Opera 23+, Firefox 39+, Safari 12+, iOS 10+ */
+  src: url("../fonts/albert-sans-v1-latin-700italic.woff2") format("woff2");
+  /* Chrome 36+, Opera 23+, Firefox 39+, Safari 12+, iOS 10+ */
 }
 
 /* Vars */
@@ -52,11 +63,11 @@ $bottom-nav-height: 77px;
   min-height: 600px;
 }
 
-.front-page-header > #front-data-container {
+.front-page-header>#front-data-container {
   background-image: linear-gradient(to bottom, #2580c3ff, #2580c300);
 }
 
-#nav-main .navbar-brand > img {
+#nav-main .navbar-brand>img {
   height: 50px;
 }
 
@@ -120,11 +131,11 @@ body:not(.home) #content {
 }
 
 @include media-breakpoint-down(xl) {
-  div:not(.home) .entry-header > .row > .col {
+  div:not(.home) .entry-header>.row>.col {
     padding-right: 0;
   }
 
-  div:not(.home) .entry-header > .row > .col > div > .row > .col {
+  div:not(.home) .entry-header>.row>.col>div>.row>.col {
     padding-right: 0;
   }
 }
@@ -140,7 +151,8 @@ body:not(.home) #content {
   opacity: 0.75;
 }
 
-.sponsors-container, .instituciones-container {
+.sponsors-container,
+.instituciones-container {
   display: flex;
   gap: $spacer $spacer * 1.5;
   flex-wrap: wrap;
@@ -227,12 +239,12 @@ body:not(.home) #content {
   gap: $spacer * 1.5;
 }
 
-#hotel-sug .card > .card-body {
+#hotel-sug .card>.card-body {
   display: flex;
   flex-direction: column;
 }
 
-#hotel-sug .card > .card-body > .btn {
+#hotel-sug .card>.card-body>.btn {
   margin-top: auto;
 }
 
@@ -267,11 +279,11 @@ body:not(.home) #content {
   color: $dark;
 }
 
-#order_review > .shop_table .amount {
+#order_review>.shop_table .amount {
   word-break: keep-all;
 }
 
-#order_review > .shop_table {
+#order_review>.shop_table {
   margin: 0;
   text-align: left;
   width: 100%;
@@ -279,21 +291,21 @@ body:not(.home) #content {
   margin-bottom: 2rem;
 }
 
-#order_review > .shop_table .amount {
+#order_review>.shop_table .amount {
   word-break: keep-all;
 }
 
-#order_review > .shop_table td,
-#order_review > .shop_table th {
+#order_review>.shop_table td,
+#order_review>.shop_table th {
   border: 1px solid rgba(255, 255, 255, 0.3);
 }
 
-#order_review > .shop_table thead th,
-#order_review > .shop_table tfoot th {
+#order_review>.shop_table thead th,
+#order_review>.shop_table tfoot th {
   background-color: rgba(255, 255, 255, 0.1);
 }
 
-#order_review > .shop_table tfoot td {
+#order_review>.shop_table tfoot td {
   background-color: rgba(255, 255, 255, 0.05);
 }
 
@@ -316,12 +328,12 @@ body:not(.home) #content {
   }
 }
 
-#sponsors-map > img {
+#sponsors-map>img {
   object-fit: cover;
   object-position: top left;
 }
 
-.navbar.fixed-bottom > div > .navbar-nav > a > i {
+.navbar.fixed-bottom>div>.navbar-nav>a>i {
   font-size: 32px !important;
 }
 
@@ -333,7 +345,8 @@ body:not(.home) #content {
   color: $light;
 }
 
-.comision {
+.comision,
+.adhesiones {
   display: grid;
   grid-template-columns: 1fr;
   gap: $spacer * 1.5;
@@ -351,12 +364,14 @@ body:not(.home) #content {
   }
 }
 
-.comision > div {
+.comision>div,
+.adhesiones>div {
   border-left: 5px solid rgba(255, 255, 255, 0.25);
   padding-left: 1rem;
 }
 
-.comision > div > h3 {
+.comision>div>h3,
+.adhesiones>div>h3 {
   font-size: 1.25rem;
 }
 
@@ -368,6 +383,6 @@ body:not(.home) #content {
   color: $light;
 }
 
-.payment_method_macro_click > label > img {
+.payment_method_macro_click>label>img {
   height: 32px;
 }
