@@ -375,6 +375,16 @@ body:not(.home) #content {
   font-size: 1.25rem;
 }
 
+.adhesiones-institucionales #content a:link,
+.adhesiones-institucionales #content a:visited {
+  color: $light;
+}
+
+.adhesiones-institucionales #content a:hover,
+.adhesiones-institucionales #content a:active {
+  color: $white;
+}
+
 .woocommerce .woocommerce-customer-details address {
   background: rgba(0, 0, 0, 0.1);
 }
