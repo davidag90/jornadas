@@ -233,8 +233,18 @@ function show_disertantes()
       echo '</div>'; // .col-4
       echo '<div class="col-8 d-flex flex-column justify-content-center">';
       echo '<h2 class="h5"><span class="fi fi-' . $flag . ' me-2"></span>' . get_the_title() . '</h2>';
+      if ($especialidades) {
+        $especialidades_name = [];
+
+        foreach ($especialidades as $especialidad) {
+          array_push($especialidades_name, $especialidad->name);
+        }
+
+        echo '<p class="text-uppercase opacity-75"><small>' . implode(' - ', $especialidades_name) . '</small></p>';
+      }
+
       if ($conferencias) {
-        echo '<ul class="mb-3">';
+        echo '<ul>';
         foreach ($conferencias as $conferencia) {
           $id = $conferencia->ID;
 
@@ -246,16 +256,6 @@ function show_disertantes()
           echo '</li>';
         }
         echo '</ul>';
-      }
-
-      if ($especialidades) {
-        $especialidades_name = [];
-
-        foreach ($especialidades as $especialidad) {
-          array_push($especialidades_name, $especialidad->name);
-        }
-
-        echo '<p class="text-uppercase opacity-75"><small>' . implode(' - ', $especialidades_name) . '</small></p>';
       }
       echo '</div>'; // .col-8
       echo '</div>'; // .row
