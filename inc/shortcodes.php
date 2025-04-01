@@ -234,7 +234,7 @@ function show_disertantes()
       echo '<div class="col-8 d-flex flex-column justify-content-center">';
       echo '<h2 class="h5"><span class="fi fi-' . $flag . ' me-2"></span>' . get_the_title() . '</h2>';
       if ($conferencias) {
-        echo '<ul>';
+        echo '<ul class="mb-3">';
         foreach ($conferencias as $conferencia) {
           $id = $conferencia->ID;
 
@@ -255,7 +255,7 @@ function show_disertantes()
           array_push($especialidades_name, $especialidad->name);
         }
 
-        echo '<p class="text-uppercase"><small>' . implode(' - ', $especialidades_name) . '</small></p>';
+        echo '<p class="text-uppercase opacity-75"><small>' . implode(' - ', $especialidades_name) . '</small></p>';
       }
       echo '</div>'; // .col-8
       echo '</div>'; // .row
