@@ -255,7 +255,7 @@ function show_disertantes()
           array_push($especialidades_name, $especialidad->name);
         }
 
-        echo '<p class="text-uppercase">' . implode(' - ', $especialidades_name) . '</p>';
+        echo '<p class="text-uppercase"><small>' . implode(' - ', $especialidades_name) . '</small></p>';
       }
       echo '</div>'; // .col-8
       echo '</div>'; // .row
