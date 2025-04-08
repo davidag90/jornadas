@@ -71,7 +71,7 @@ function show_disertantes()
           array_push($especialidades_name, $especialidad->name);
         }
 
-        echo '<p class="text-uppercase">' . implode(' - ', $especialidades_name) . '</p>';
+        echo '<p class="text-uppercase opacity-75"><small>' . implode(' - ', $especialidades_name) . '</small></p>';
       }
 
       if ($conferencias) {
@@ -158,7 +158,7 @@ function show_disertantes()
           array_push($especialidades_name, $especialidad->name);
         }
 
-        echo '<p class="text-uppercase">' . implode(' - ', $especialidades_name) . '</p>';
+        echo '<p class="text-uppercase opacity-75"><small>' . implode(' - ', $especialidades_name) . '</small></p>';
       }
 
       if ($conferencias) {
