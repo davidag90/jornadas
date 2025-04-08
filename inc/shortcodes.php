@@ -83,7 +83,8 @@ function show_disertantes()
           $permalink = get_the_permalink($id);
 
           echo '<li>';
-          echo '<a class="link-light text-decoration-none" href="' . $permalink . '"><i class="fa-solid fa-asterisk fa-xs me-1"></i>' . $title . '</a>';
+          echo '<i class="fa-solid fa-asterisk fa-xs me-1"></i>' . $title; // Alternative temporary layout
+          // echo '<a class="link-light text-decoration-none" href="' . $permalink . '"><i class="fa-solid fa-asterisk fa-xs me-1"></i>' . $title . '</a>';
           echo '</li>';
         }
         echo '</ul>';
@@ -169,7 +170,8 @@ function show_disertantes()
           $permalink = get_the_permalink($id);
 
           echo '<li>';
-          echo '<a class="link-light text-decoration-none" href="' . $permalink . '"><i class="fa-solid fa-asterisk fa-xs me-1"></i>' . $title . '</a>';
+          echo '<i class="fa-solid fa-asterisk fa-xs me-1"></i>' . $title; // Alternative temporary layout
+          // echo '<a class="link-light text-decoration-none" href="' . $permalink . '"><i class="fa-solid fa-asterisk fa-xs me-1"></i>' . $title . '</a>';
           echo '</li>';
         }
         echo '</ul>';
@@ -252,7 +254,8 @@ function show_disertantes()
           $permalink = get_the_permalink($id);
 
           echo '<li>';
-          echo '<a class="link-light text-decoration-none" href="' . $permalink . '"><i class="fa-solid fa-asterisk fa-xs me-1"></i>' . $title . '</a>';
+          echo '<i class="fa-solid fa-asterisk fa-xs me-1"></i>' . $title; // Alternative temporary layout
+          // echo '<a class="link-light text-decoration-none" href="' . $permalink . '"><i class="fa-solid fa-asterisk fa-xs me-1"></i>' . $title . '</a>';
           echo '</li>';
         }
         echo '</ul>';
