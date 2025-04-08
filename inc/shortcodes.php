@@ -58,10 +58,10 @@ function show_disertantes()
       echo '<div class="disertante col-12 col-md-6 col-xl-4">';
       echo '<div class="text-light mb-4 pb-4">';
       echo '<div class="row">';
-      echo '<div class="col-4 d-flex flex-column justify-content-center">';
+      echo '<div class="col-4 d-flex flex-column justify-content-start">';
       echo '<img src="' . $thumb . '" class="rounded-circle border border-warning border-5" />';
       echo '</div>'; // .col-4
-      echo '<div class="col-8 d-flex flex-column justify-content-center">';
+      echo '<div class="col-8 d-flex flex-column justify-content-start">';
       echo '<h2 class="h5"><span class="fi fi-' . $flag . ' me-2"></span>' . get_the_title() . '</h2>';
 
       if ($especialidades) {
@@ -144,10 +144,10 @@ function show_disertantes()
       echo '<div class="disertante col-12 col-md-6 col-xl-4">';
       echo '<div class="text-light mb-4 pb-4">';
       echo '<div class="row">';
-      echo '<div class="col-4 d-flex flex-column justify-content-center">';
+      echo '<div class="col-4 d-flex flex-column justify-content-start">';
       echo '<img src="' . $thumb . '" class="rounded-circle border border-warning border-5" />';
       echo '</div>'; // .col-4
-      echo '<div class="col-8 d-flex flex-column justify-content-center">';
+      echo '<div class="col-8 d-flex flex-column justify-content-start">';
       echo '<h2 class="h5"><span class="fi fi-' . $flag . ' me-2"></span>' . get_the_title() . '</h2>';
 
       if ($especialidades) {
@@ -231,7 +231,7 @@ function show_disertantes()
       echo '<div class="col-4 d-flex flex-column justify-content-start">';
       echo '<img src="' . $thumb . '" class="rounded-circle border border-warning border-5" />';
       echo '</div>'; // .col-4
-      echo '<div class="col-8 d-flex flex-column justify-content-center">';
+      echo '<div class="col-8 d-flex flex-column justify-content-start">';
       echo '<h2 class="h5"><span class="fi fi-' . $flag . ' me-2"></span>' . get_the_title() . '</h2>';
       if ($especialidades) {
         $especialidades_name = [];
@@ -545,63 +545,68 @@ function get_agenda_events()
       $evt = [
         "id" => get_the_ID(),
         "title" => get_the_title(),
-        "start" => new DateTime(get_field('inicio')),
-        "end" => new DateTime(get_field('fin')),
-        "terms_objs" => get_the_terms(get_the_ID(), 'especialidad'),
-        "disertantes" => get_field('disertantes'),
-        "salon" => get_field('salon'),
-        "link" => get_the_permalink(),
+        "terms_objs" => get_the_terms(get_the_ID(), 'especialidad') ?? null,
+        "disertantes" => get_field('disertantes') ?? null,
+        "salon" => get_field('salon') ?? '',
+        "link" => get_the_permalink() ?? null,
       ];
 
-      $key_check = true;
+      (get_field('inicio')) ? $evt["start"] = new DateTime(get_field('inicio')) : $evt['start'] = null;
+      (get_field('fin')) ? $evt["end"] = new DateTime(get_field('fin')) : $evt['end'] = null;
+
+      /* $key_check = true;
       foreach ($evt as $evt_key) {
         if (! isset($evt_key)) {
           $key_check = false;
         }
+      } */
+
+      // if ($key_check) {
+      $especialidades_name = [];
+      $especialidades_slug = [];
+
+      foreach ($evt['terms_objs'] as $especialidad) {
+        array_push($especialidades_name, $especialidad->name);
+        array_push($especialidades_slug, $especialidad->slug);
       }
 
-      if ($key_check) {
-        $especialidades_name = [];
-        $especialidades_slug = [];
+      $disertantes = [];
+      $disertantes_slug = [];
 
-        foreach ($evt['terms_objs'] as $especialidad) {
-          array_push($especialidades_name, $especialidad->name);
-          array_push($especialidades_slug, $especialidad->slug);
-        }
+      foreach ($evt['disertantes'] as $disertante) {
+        array_push(
+          $disertantes,
+          array(
+            'nombre' => $disertante->post_title,
+            'nacionalidad' => get_field('nacionalidad', $disertante->ID)
+          )
+        );
+        array_push($disertantes_slug, $disertante->post_name);
+      }
 
-        $disertantes = [];
-        $disertantes_slug = [];
+      echo '<div class="agenda-event mb-4 p-3 d-block border-start border-5 border-dark bg-light-subtle rounded-end" jnd-salon="';
+      echo (isset($evt['salon']['value'])) ? $evt['salon']["value"] : '';
+      echo '" jnd-especialidad="' . implode(' ', $especialidades_slug) . '" jnd-disertante="' . implode(' ', $disertantes_slug) . '" jnd-event-id="' . $evt['id'] . '">';
+      if ($evt["link"]) echo '<a href="' . $evt['link'] . '" class="text-decoration-none">';
+      echo '<h3 class="h5">' . $evt['title'] . '</h3>';
+      echo '<div class="event-details mb-0 text-dark">';
+      if ($especialidades_name) echo '<span><i class="fa-solid fa-book-bookmark me-2"></i>' . implode(', ', $especialidades_name) . '</span>';
+      if (isset($evt['salon']['label'])) echo '<span><i class="fa-solid fa-location-dot me-2"></i>' . $evt['salon']['label'] . '</span>';
+      echo '<span>';
 
-        foreach ($evt['disertantes'] as $disertante) {
-          array_push(
-            $disertantes,
-            array(
-              'nombre' => $disertante->post_title,
-              'nacionalidad' => get_field('nacionalidad', $disertante->ID)
-            )
-          );
-          array_push($disertantes_slug, $disertante->post_name);
-        }
+      foreach ($disertantes as $disertante) {
+        echo '<span class="d-block d-md-inline me-2"><span class="fi fi-' . $disertante['nacionalidad'] . ' me-1"></span>' . $disertante['nombre'] . '</span>';
+      }
 
-        echo '<div class="agenda-event mb-4 p-3 d-block border-start border-5 border-dark bg-light-subtle rounded-end" jnd-salon="' . $evt['salon']['value'] . '" jnd-especialidad="' . implode(' ', $especialidades_slug) . '" jnd-disertante="' . implode(' ', $disertantes_slug) . '" jnd-event-id="' . $evt['id'] . '">';
-        echo '<a href="' . $evt['link'] . '" class="text-decoration-none">';
-        echo '<h3 class="h5">' . $evt['title'] . '</h3>';
-        echo '<div class="event-details mb-0 text-dark">';
-        if ($especialidades_name) echo '<span><i class="fa-solid fa-book-bookmark me-2"></i>' . implode(', ', $especialidades_name) . '</span>';
-        echo '<span><i class="fa-solid fa-location-dot me-2"></i>' . $evt['salon']['label'] . '</span>';
-        echo '<span>';
-
-        foreach ($disertantes as $disertante) {
-          echo '<span class="d-block d-md-inline me-2"><span class="fi fi-' . $disertante['nacionalidad'] . ' me-1"></span>' . $disertante['nombre'] . '</span>';
-        }
-
-        echo '</span>';
+      echo '</span>';
+      if ($evt['start'] && $evt['end']) {
         echo '<span><i class="fa-regular fa-calendar-days me-2"></i>' . wp_date('j \d\e F \d\e Y', $evt['start']->getTimestamp()) . '</span>';
         echo '<span><i class="fa-regular fa-clock me-2"></i>' . $evt['start']->format('H:i') . ' a ' . $evt['end']->format('H:i') . ' hs.</span>';
-        echo '</div>'; // .event-details
-        echo '</a>';
-        echo '</div>'; // .agenda-event
       }
+      echo '</div>'; // .event-details
+      if ($evt["link"]) echo '</a>';
+      echo '</div>'; // .agenda-event
+      // }
     }
     echo '</div>'; // #agenda-events
     echo '</div>'; // .col-12
