@@ -589,7 +589,9 @@ function get_agenda_events()
 
       echo '<div class="agenda-event mb-4 p-3 d-block border-start border-5 border-dark bg-light-subtle rounded-end" jnd-salon="';
       echo (isset($evt['salon']['value'])) ? $evt['salon']["value"] : '';
-      echo '" jnd-especialidad="' . implode(' ', $especialidades_slug) . '" jnd-disertante="' . implode(' ', $disertantes_slug) . '" jnd-event-id="' . $evt['id'] . '">';
+      echo '" jnd-especialidad="';
+      echo (isset($especialidades_slug)) ? implode(' ', $especialidades_slug) : 'none';
+      echo '" jnd-disertante="' . implode(' ', $disertantes_slug) . '" jnd-event-id="' . $evt['id'] . '">';
       if ($evt["link"]) echo '<a href="' . $evt['link'] . '" class="text-decoration-none">';
       echo '<h3 class="h5">' . $evt['title'] . '</h3>';
       echo '<div class="event-details mb-0 text-dark">';
