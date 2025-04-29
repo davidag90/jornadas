@@ -47,7 +47,7 @@ function show_disertantes()
     while ($query_ext_high->have_posts()) {
       $query_ext_high->the_post();
       $especialidades = get_field('especialidad');
-      $conferencias = get_field('conferencias');
+      $actividades = get_field('actividades');
       $flag = get_field('nacionalidad');
       $thumb = get_the_post_thumbnail_url();
 
@@ -74,10 +74,10 @@ function show_disertantes()
         echo '<p class="text-uppercase opacity-75"><small>' . implode(' - ', $especialidades_name) . '</small></p>';
       }
 
-      if ($conferencias) {
+      if ($actividades) {
         echo '<ul>';
-        foreach ($conferencias as $conferencia) {
-          $id = $conferencia->ID;
+        foreach ($actividades as $actividad) {
+          $id = $actividad->ID;
 
           $title = get_the_title($id);
           $permalink = get_the_permalink($id);
@@ -134,7 +134,7 @@ function show_disertantes()
     while ($query_ext->have_posts()) {
       $query_ext->the_post();
       $especialidades = get_field('especialidad');
-      $conferencias = get_field('conferencias');
+      $actividades = get_field('actividades');
       $flag = get_field('nacionalidad');
       $thumb = get_the_post_thumbnail_url();
 
@@ -161,10 +161,10 @@ function show_disertantes()
         echo '<p class="text-uppercase opacity-75"><small>' . implode(' - ', $especialidades_name) . '</small></p>';
       }
 
-      if ($conferencias) {
+      if ($actividades) {
         echo '<ul>';
-        foreach ($conferencias as $conferencia) {
-          $id = $conferencia->ID;
+        foreach ($actividades as $actividad) {
+          $id = $actividad->ID;
 
           $title = get_the_title($id);
           $permalink = get_the_permalink($id);
@@ -218,7 +218,7 @@ function show_disertantes()
   if ($query_arg->have_posts()) {
     while ($query_arg->have_posts()) {
       $query_arg->the_post();
-      $conferencias = get_field('conferencias');
+      $actividades = get_field('actividades');
       $especialidades = get_field('especialidad');
       $flag = get_field('nacionalidad');
       $thumb = get_the_post_thumbnail_url();
@@ -245,10 +245,10 @@ function show_disertantes()
         echo '<p class="text-uppercase opacity-75"><small>' . implode(' - ', $especialidades_name) . '</small></p>';
       }
 
-      if ($conferencias) {
+      if ($actividades) {
         echo '<ul>';
-        foreach ($conferencias as $conferencia) {
-          $id = $conferencia->ID;
+        foreach ($actividades as $actividad) {
+          $id = $actividad->ID;
 
           $title = get_the_title($id);
           $permalink = get_the_permalink($id);
@@ -421,11 +421,11 @@ function get_agenda_events()
 {
   ob_start();
 
-  $conferencia_fields = acf_get_fields('group_673e15fe9bfb2');
+  $actividad_fields = acf_get_fields('group_673e15fe9bfb2');
 
   $salones = [];
 
-  foreach ($conferencia_fields as $field) {
+  foreach ($actividad_fields as $field) {
     if ($field['type'] == 'select' && $field['name'] == 'salon') {
       $salones = $field['choices'];
 
@@ -529,7 +529,7 @@ function get_agenda_events()
   echo '</div>'; // #agenda-controls
 
   $args = [
-    'post_type' => 'conferencia',
+    'post_type' => 'actividad',
     'posts_per_page' => -1,
     'orderby' => 'meta_value',
     'meta_type' => 'DATETIME',

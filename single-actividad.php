@@ -1,7 +1,7 @@
 <?php
 
 /**
- * Template Post Type: conferencia
+ * Template Post Type: actividad
  *
  */
 
@@ -42,11 +42,6 @@ get_header();
                   <!-- <pre class="text-dark"><?php var_dump($disertantes); ?></pre> -->
                   <?php the_content(); ?>
                 </div>
-
-                <div class="entry-footer clear-both">
-                  <!-- Related posts using bS Swiper plugin -->
-                  <?php if (function_exists('bootscore_related_posts')) bootscore_related_posts(); ?>
-                </div><!-- .entry-footer -->
               </main>
             </div><!-- .col -->
           </div><!-- .row -->
