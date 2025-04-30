@@ -80,11 +80,10 @@ function show_disertantes()
           $id = $actividad->ID;
 
           $title = get_the_title($id);
-          $permalink = get_the_permalink($id);
+          $tipo = get_field('tipo_actividad', $id);
 
           echo '<li>';
-          echo '<i class="fa-solid fa-asterisk fa-xs me-1"></i>' . $title; // Alternative temporary layout
-          // echo '<a class="link-light text-decoration-none" href="' . $permalink . '"><i class="fa-solid fa-asterisk fa-xs me-1"></i>' . $title . '</a>';
+          echo '<i class="fa-solid fa-asterisk fa-xs me-1"></i>' . $title;
           echo '</li>';
         }
         echo '</ul>';
@@ -552,19 +551,12 @@ function get_agenda_events()
         "disertantes" => get_field('disertantes') ?? null,
         "salon" => get_field('salon') ?? '',
         "link" => get_the_permalink() ?? null,
+        "tipo" => get_field('tipo_actividad') ?? null
       ];
 
       (get_field('inicio')) ? $evt["start"] = new DateTime(get_field('inicio')) : $evt['start'] = null;
       (get_field('fin')) ? $evt["end"] = new DateTime(get_field('fin')) : $evt['end'] = null;
 
-      /* $key_check = true;
-      foreach ($evt as $evt_key) {
-        if (! isset($evt_key)) {
-          $key_check = false;
-        }
-      } */
-
-      // if ($key_check) {
       $especialidades_name = [];
       $especialidades_slug = [];
 
@@ -592,26 +584,27 @@ function get_agenda_events()
       echo '" jnd-especialidad="';
       echo (isset($especialidades_slug[0])) ? implode(' ', $especialidades_slug) : 'none';
       echo '" jnd-disertante="' . implode(' ', $disertantes_slug) . '" jnd-event-id="' . $evt['id'] . '">';
-      if ($evt["link"]) echo '<a href="' . $evt['link'] . '" class="text-decoration-none">';
+      // if ($evt["link"]) echo '<a href="' . $evt['link'] . '" class="text-decoration-none">'; // Temporarily disabled
       echo '<h3 class="h5">' . $evt['title'] . '</h3>';
       echo '<div class="event-details mb-0 text-dark">';
       if ($especialidades_name) echo '<span><i class="fa-solid fa-book-bookmark me-2"></i>' . implode(', ', $especialidades_name) . '</span>';
       if (isset($evt['salon']['label'])) echo '<span><i class="fa-solid fa-location-dot me-2"></i>' . $evt['salon']['label'] . '</span>';
+
+      if ($evt['tipo']) echo '<span><i class="fa-solid fa-person-chalkboard"></i> ' . $evt["tipo"]["label"] . '</span>';
+
       echo '<span>';
-
       foreach ($disertantes as $disertante) {
-        echo '<span class="d-block d-md-inline me-2"><span class="fi fi-' . $disertante['nacionalidad'] . ' me-1"></span>' . $disertante['nombre'] . '</span>';
+        echo '<span class="d-block d-md-inline me-3"><span class="fi fi-' . $disertante['nacionalidad'] . ' me-1"></span>' . $disertante['nombre'] . '</span>';
       }
-
       echo '</span>';
+
       if ($evt['start'] && $evt['end']) {
         echo '<span><i class="fa-regular fa-calendar-days me-2"></i>' . wp_date('j \d\e F \d\e Y', $evt['start']->getTimestamp()) . '</span>';
         echo '<span><i class="fa-regular fa-clock me-2"></i>' . $evt['start']->format('H:i') . ' a ' . $evt['end']->format('H:i') . ' hs.</span>';
       }
       echo '</div>'; // .event-details
-      if ($evt["link"]) echo '</a>';
+      // if ($evt["link"]) echo '</a>'; // Temporarily disabled
       echo '</div>'; // .agenda-event
-      // }
     }
     echo '</div>'; // #agenda-events
     echo '</div>'; // .col-12
