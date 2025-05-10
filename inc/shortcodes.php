@@ -10,7 +10,7 @@ function show_disertantes()
   echo '<div id="search-disertantes" class="mb-5">';
   echo '<form>';
   echo '<div class="input-group">';
-  echo '<input type="text" id="query-disertante" class="form-control bg-light bg-opacity-10 text-light" aria-label="Consulta de búsqueda de Disertantes" placeholder="Buscar disertante...">';
+  echo '<input type="text" id="query-disertante" class="form-control" aria-label="Consulta de búsqueda de Disertantes" placeholder="Buscar disertante...">';
   echo '<span class="input-group-text"><i class="fa-solid fa-magnifying-glass"></i></span>';
   echo '</div>';
   echo '</form>';
@@ -56,7 +56,7 @@ function show_disertantes()
       }
 
       echo '<div class="disertante col-12 col-md-6 col-xl-4">';
-      echo '<div class="text-light mb-4 pb-4">';
+      echo '<div class="mb-4 pb-4">';
       echo '<div class="row">';
       echo '<div class="col-4 d-flex flex-column justify-content-start">';
       echo '<img src="' . $thumb . '" class="rounded-circle border border-warning border-5" />';
@@ -142,7 +142,7 @@ function show_disertantes()
       }
 
       echo '<div class="disertante col-12 col-md-6 col-xl-4">';
-      echo '<div class="text-light mb-4 pb-4">';
+      echo '<div class="mb-4 pb-4">';
       echo '<div class="row">';
       echo '<div class="col-4 d-flex flex-column justify-content-start">';
       echo '<img src="' . $thumb . '" class="rounded-circle border border-warning border-5" />';
@@ -227,7 +227,7 @@ function show_disertantes()
       }
 
       echo '<div class="disertante col-12 col-md-6 col-xl-4">';
-      echo '<div class="text-light mb-4 pb-4">';
+      echo '<div class="mb-4 pb-4">';
       echo '<div class="row">';
       echo '<div class="col-4 d-flex flex-column justify-content-start">';
       echo '<img src="' . $thumb . '" class="rounded-circle border border-warning border-5" />';

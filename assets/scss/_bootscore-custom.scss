@@ -125,7 +125,7 @@ $bottom-nav-height: 77px;
   font-size: 0.8rem;
 }
 
-body:not(.home) #content {
+body:not(.home, .disertantes) #content {
   background-image: linear-gradient(to bottom, #2681c4, #519ad0);
   padding-bottom: $spacer * 3;
 }
@@ -144,11 +144,6 @@ body:not(.home) #content {
   list-style-type: none;
   margin-bottom: 0;
   padding-left: 0;
-}
-
-#search-disertantes #query-disertante::placeholder {
-  color: $light;
-  opacity: 0.75;
 }
 
 .sponsors-container,
