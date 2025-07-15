@@ -41,7 +41,7 @@ do_action('woocommerce_email_header', $email_heading, $email); ?>
   ?>
 </p>
 <?php /* translators: %s: Order number */ ?>
-<p><?php printf('Tu pedido de inscripción #%s ha sido correctamente recibido y está siendo procesado:', esc_html($order->get_order_number())); ?></p>
+<p><?php printf('Tu pedido de inscripción #%s ha sido correctamente recibido y fuiste inscripto con los siguientes datos:', esc_html($order->get_order_number())); ?></p>
 <?php echo $email_improvements_enabled ? '</div>' : ''; ?>
 <?php
 
