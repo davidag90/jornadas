@@ -385,7 +385,7 @@ function cat_pre_order()
       echo '<div id="cat_pre_order">';
       echo '<div class="mb-3">';
       echo '<label for="cat_inscripcion" class="form-label">Elija una categoría para su inscripción</label>';
-      echo '<select id="cat_inscripcion" class="form-select" aria-label="Elija la categoría de su inscripción" aria-describedby="passwordHelpBlock">';
+      echo '<select id="cat_inscripcion" class="form-select" aria-label="Elija la categoría de su inscripción">';
       echo '<option value="" selected>Seleccione una categoría...</option>';
       foreach ($variations as $variation) {
         $variation_product = wc_get_product($variation);
