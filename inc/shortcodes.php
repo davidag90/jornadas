@@ -38,7 +38,8 @@ function show_disertantes()
       ],
       'hidden_clause' => [
         'key' => 'oculto',
-        'value' => '0'
+        'value' => '1',
+        'compare' => 'NOT LIKE'
       ]
     ],
     'orderby' => 'meta_value_num',
@@ -122,7 +123,8 @@ function show_disertantes()
       ],
       'hidden_clause' => [
         'key' => 'oculto',
-        'value' => '0'
+        'value' => '1',
+        'compare' => 'NOT LIKE'
       ]
     ],
     'orderby' => [
@@ -212,7 +214,8 @@ function show_disertantes()
       ],
       'hidden_clause' => [
         'key' => 'oculto',
-        'value' => '0'
+        'value' => '1',
+        'compare' => 'NOT LIKE'
       ]
     ],
     'orderby' => [
