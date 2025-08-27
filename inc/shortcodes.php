@@ -24,8 +24,8 @@ function show_disertantes()
       'relation' => 'AND',
       'nac_clause' => [
         'key' => 'nacionalidad',
-        'value' => 'ar',
-        'compare' => 'NOT LIKE'
+        'compare' => 'NOT LIKE',
+        'value' => 'ar'
       ],
       'prio_clause' => [
         'key' => 'prioridad',
@@ -35,6 +35,10 @@ function show_disertantes()
       'order_clause' => [
         'key' => 'orden',
         'compare' => 'EXISTS'
+      ],
+      'hidden_clause' => [
+        'key' => 'oculto',
+        'value' => '0'
       ]
     ],
     'orderby' => 'meta_value_num',
@@ -115,6 +119,10 @@ function show_disertantes()
       'ap_clause' => [
         'key' => 'apellido',
         'compare' => 'EXISTS'
+      ],
+      'hidden_clause' => [
+        'key' => 'oculto',
+        'value' => '0'
       ]
     ],
     'orderby' => [
@@ -201,6 +209,10 @@ function show_disertantes()
       'ap_clause' => [
         'key' => 'apellido',
         'compare' => 'EXISTS'
+      ],
+      'hidden_clause' => [
+        'key' => 'oculto',
+        'value' => '0'
       ]
     ],
     'orderby' => [
