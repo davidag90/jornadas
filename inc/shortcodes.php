@@ -36,7 +36,18 @@ function show_disertantes()
         'key' => 'orden',
         'compare' => 'EXISTS'
       ],
-
+      'oculto_clause' => [
+        'relation' => 'OR',
+        [
+          'key' => 'oculto',
+          'value' => '0',
+          'compare' => '=',
+        ],
+        [
+          'key' => 'oculto',
+          'compare' => 'NOT EXISTS',
+        ]
+      ]
     ],
     'orderby' => 'meta_value_num',
     'meta_key' => 'orden',
@@ -117,7 +128,18 @@ function show_disertantes()
         'key' => 'apellido',
         'compare' => 'EXISTS'
       ],
-
+      'oculto_clause' => [
+        'relation' => 'OR',
+        [
+          'key' => 'oculto',
+          'value' => '0',
+          'compare' => '=',
+        ],
+        [
+          'key' => 'oculto',
+          'compare' => 'NOT EXISTS',
+        ]
+      ]
     ],
     'orderby' => [
       'prio_clause' => 'DESC',
@@ -204,7 +226,18 @@ function show_disertantes()
         'key' => 'apellido',
         'compare' => 'EXISTS'
       ],
-
+      'oculto_clause' => [
+        'relation' => 'OR',
+        [
+          'key' => 'oculto',
+          'value' => '0',
+          'compare' => '=',
+        ],
+        [
+          'key' => 'oculto',
+          'compare' => 'NOT EXISTS',
+        ]
+      ]
     ],
     'orderby' => [
       'prio_clause' => 'DESC',
