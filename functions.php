@@ -122,3 +122,16 @@ function j23_validate_checkout_cuit_cuil($fields, $errors)
     $errors->add('validation', '<strong>Numero de CUIT/CUIL incorrecto:</strong> revise que conste de exactamente 13 caracteres');
   }
 }
+
+
+/**
+ * Change container class for navbar in header.php
+ */
+function change_header_navbar_container($string, $location)
+{
+  if ($location == 'header') {
+    return "container-fluid";
+  }
+  return $string;
+}
+add_filter('bootscore/class/container', 'change_header_navbar_container', 10, 2);
