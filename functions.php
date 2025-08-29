@@ -127,7 +127,7 @@ function j23_validate_checkout_cuit_cuil($fields, $errors)
 /**
  * Change container class for navbar in header.php
  */
-function change_header_navbar_container($string, $location)
+function change_header_navbar_container($string, $location = null)
 {
   if ($location == 'header') {
     return "container-fluid";
