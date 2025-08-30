@@ -71,6 +71,22 @@ $bottom-nav-height: 77px;
   height: 50px;
 }
 
+// Ajuste realizado para gestionar exceso de información en el menú en resoluciones intermedias (+992px y -1200px)
+@include media-breakpoint-up(lg) {
+  #nav-main .navbar-nav .nav-link {
+    padding: 0 .25rem;
+    font-size: 13px;
+  }
+}
+
+@include media-breakpoint-up(xl) {
+  #nav-main .navbar-nav .nav-link {
+    padding: 0 $spacer * 0.5;
+    font-size: $font-size-base;
+  }
+}
+// Fin ajuste
+
 #front-data {
   gap: 2rem;
 }
