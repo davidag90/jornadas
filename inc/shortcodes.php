@@ -468,6 +468,12 @@ function get_agenda_events()
     }
   }
 
+  $dias = [
+    '2025-09-24' => 'Miércoles 24 de Septiembre',
+    '2025-09-25' => 'Jueves 25 de Septiembre',
+    '2025-09-26' => 'Viernes 26 de Septiembre'
+  ];
+
   $especialidades = get_terms([
     'taxonomy' => 'especialidad'
   ]);
@@ -524,10 +530,18 @@ function get_agenda_events()
   echo '<div id="agenda-controls" class="mb-3">';
   echo '<div class="row">';
   echo '<div class="col-12 col-md-6 col-xl-4 mb-3">';
-  // echo '<label for="filter-salon" class="form-label">Salón</label>';
   echo '<select class="form-select jnd-filter" name="filter-salon" id="filter-salon" jnd-filter-target="jnd-salon">';
   echo '<option value="all" selected>Elegir un salón</option>';
   foreach ($salones as $value => $label) {
+    echo '<option value="' . $value . '">' . $label . '</option>';
+  }
+  echo '</select>';
+  echo '</div>';
+
+  echo '<div class="col-12 col-md-6 col-xl-4 mb-3">';
+  echo '<select class="form-select jnd-filter" name="filter-dia" id="filter-dia" jnd-filter-target="jnd-dia">';
+  echo '<option value="all" selected>Elegir un día</option>';
+  foreach ($dias as $value => $label) {
     echo '<option value="' . $value . '">' . $label . '</option>';
   }
   echo '</select>';
@@ -585,13 +599,12 @@ function get_agenda_events()
         "title" => get_the_title(),
         "terms_objs" => get_the_terms(get_the_ID(), 'especialidad') ?? null,
         "disertantes" => get_field('disertantes') ?? null,
-        "salon" => get_field('salon') ?? '',
+        "salon" => get_field('salon') ?? null,
         "link" => get_the_permalink() ?? null,
-        "tipo" => get_field('tipo_actividad') ?? null
+        "tipo" => get_field('tipo_actividad') ?? null,
+        "inicio" => (get_field('inicio')) ? new DateTime(get_field('inicio')) : null,
+        "fin" => (get_field('fin')) ? new DateTime(get_field('fin')) : null,
       ];
-
-      (get_field('inicio')) ? $evt["start"] = new DateTime(get_field('inicio')) : $evt['start'] = null;
-      (get_field('fin')) ? $evt["end"] = new DateTime(get_field('fin')) : $evt['end'] = null;
 
       $especialidades_name = [];
       $especialidades_slug = [];
@@ -615,13 +628,14 @@ function get_agenda_events()
         array_push($disertantes_slug, $disertante->post_name);
       }
 
-      echo '<div class="agenda-event mb-4 p-3 d-block border-start border-5 border-dark text-dark bg-light-subtle rounded-end" jnd-salon="';
-      echo (isset($evt['salon']['value'])) ? $evt['salon']["value"] : '';
-      echo '" jnd-especialidad="';
-      echo (isset($especialidades_slug[0])) ? implode(' ', $especialidades_slug) : 'none';
-      echo '" jnd-disertante="' . implode(' ', $disertantes_slug) . '" jnd-event-id="' . $evt['id'] . '">';
-      // if ($evt["link"]) echo '<a href="' . $evt['link'] . '" class="text-decoration-none">'; // Temporarily disabled
+      echo '<div class="agenda-event mb-4 p-3 d-block border-start border-5 border-dark text-dark bg-light-subtle rounded-end"';
+      echo ' jnd-salon="' . (($evt['salon']) ? $evt['salon']['value'] : '') . '"';
+      echo ' jnd-especialidad="' . ((isset($especialidades_slug[0])) ? implode(' ', $especialidades_slug) : 'none') . '"';
+      echo ' jnd-disertante="' . ((isset($disertantes_slug[0])) ? implode(' ', $disertantes_slug) : '') . '"';
+      echo ' jnd-event-id="' . $evt['id'] . '"';
+      echo ' jnd-dia="' . (($evt['inicio']) ? wp_date('Y-m-d', $evt['inicio']->getTimestamp()) : '') . '">';
       echo '<h3 class="h5">' . $evt['title'] . '</h3>';
+
       echo '<div class="event-details mb-0">';
       if ($especialidades_name) echo '<span><i class="fa-solid fa-book-bookmark me-2"></i>' . implode(', ', $especialidades_name) . '</span>';
       if (isset($evt['salon']['label'])) echo '<span><i class="fa-solid fa-location-dot me-2"></i>' . $evt['salon']['label'] . '</span>';
@@ -634,12 +648,11 @@ function get_agenda_events()
       }
       echo '</span>';
 
-      if ($evt['start'] && $evt['end']) {
-        echo '<span><i class="fa-regular fa-calendar-days me-2"></i>' . wp_date('j \d\e F \d\e Y', $evt['start']->getTimestamp()) . '</span>';
-        echo '<span><i class="fa-regular fa-clock me-2"></i>' . $evt['start']->format('H:i') . ' a ' . $evt['end']->format('H:i') . ' hs.</span>';
+      if ($evt['inicio'] && $evt['fin']) {
+        echo '<span><i class="fa-regular fa-calendar-days me-2"></i>' . wp_date('j \d\e F \d\e Y', $evt['inicio']->getTimestamp()) . '</span>';
+        echo '<span><i class="fa-regular fa-clock me-2"></i>' . $evt['inicio']->format('H:i') . ' a ' . $evt['fin']->format('H:i') . ' hs.</span>';
       }
       echo '</div>'; // .event-details
-      // if ($evt["link"]) echo '</a>'; // Temporarily disabled
       echo '</div>'; // .agenda-event
     }
     echo '</div>'; // #agenda-events
