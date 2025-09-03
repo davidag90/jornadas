@@ -629,11 +629,11 @@ function get_agenda_events()
       }
 
       echo '<div class="agenda-event mb-4 p-3 d-block border-start border-5 border-dark text-dark bg-light-subtle rounded-end"';
-      echo ' jnd-salon="' . (($evt['salon']) ? $evt['salon']['value'] : '') . '"';
+      echo ' jnd-salon="' . (($evt['salon']) ? $evt['salon']['value'] : 'none') . '"';
       echo ' jnd-especialidad="' . ((isset($especialidades_slug[0])) ? implode(' ', $especialidades_slug) : 'none') . '"';
-      echo ' jnd-disertante="' . ((isset($disertantes_slug[0])) ? implode(' ', $disertantes_slug) : '') . '"';
-      echo ' jnd-event-id="' . $evt['id'] . '"';
-      echo ' jnd-dia="' . (($evt['inicio']) ? wp_date('Y-m-d', $evt['inicio']->getTimestamp()) : '') . '">';
+      echo ' jnd-disertante="' . ((isset($disertantes_slug[0])) ? implode(' ', $disertantes_slug) : 'none') . '"';
+      echo ' jnd-dia="' . (($evt['inicio']) ? wp_date('Y-m-d', $evt['inicio']->getTimestamp()) : 'none') . '"';
+      echo ' jnd-event-id="' . $evt['id'] . '">';
       echo '<h3 class="h5">' . $evt['title'] . '</h3>';
 
       echo '<div class="event-details mb-0">';
