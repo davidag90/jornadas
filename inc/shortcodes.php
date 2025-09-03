@@ -529,7 +529,7 @@ function get_agenda_events()
 
   echo '<div id="agenda-controls" class="mb-3">';
   echo '<div class="row">';
-  echo '<div class="col-12 col-md-6 col-xl-4 mb-3">';
+  echo '<div class="col-12 col-md-6 col-xl-3 mb-3">';
   echo '<select class="form-select jnd-filter" name="filter-salon" id="filter-salon" jnd-filter-target="jnd-salon">';
   echo '<option value="all" selected>Elegir un salón</option>';
   foreach ($salones as $value => $label) {
@@ -538,7 +538,7 @@ function get_agenda_events()
   echo '</select>';
   echo '</div>';
 
-  echo '<div class="col-12 col-md-6 col-xl-4 mb-3">';
+  echo '<div class="col-12 col-md-6 col-xl-3 mb-3">';
   echo '<select class="form-select jnd-filter" name="filter-dia" id="filter-dia" jnd-filter-target="jnd-dia">';
   echo '<option value="all" selected>Elegir un día</option>';
   foreach ($dias as $value => $label) {
@@ -547,7 +547,7 @@ function get_agenda_events()
   echo '</select>';
   echo '</div>';
 
-  echo '<div class="col-12 col-md-6 col-xl-4 mb-3">';
+  echo '<div class="col-12 col-md-6 col-xl-3 mb-3">';
   echo '<select class="form-select jnd-filter" name="filter-especialidad" id="filter-especialidad" jnd-filter-target="jnd-especialidad">';
   echo '<option value="all" selected>Elegir una especialidad</option>';
 
@@ -558,7 +558,7 @@ function get_agenda_events()
   echo '</select>';
   echo '</div>';
 
-  echo '<div class="col-12 col-md-6 col-xl-4 mb-3">';
+  echo '<div class="col-12 col-md-6 col-xl-3 mb-3">';
   echo '<select class="form-select jnd-filter" name="filter-disertante" id="filter-disertante" jnd-filter-target="jnd-disertante">';
   echo '<option value="all" selected>Elegir un disertante</option>';
 
