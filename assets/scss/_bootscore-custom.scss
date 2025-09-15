@@ -329,6 +329,10 @@ body:not(.home) #content {
   color: $light;
 }
 
+.verificar-inscripcion .entry-content a {
+  color: $light;
+}
+
 .event-details {
   display: flex;
   flex-direction: column;
