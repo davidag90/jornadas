@@ -1,7 +1,7 @@
 // Constants using more descriptive names
 const DISPLAY_CLASSES = {
-  SHOW: 'd-block',
-  HIDE: 'd-none'
+  SHOW: "d-block",
+  HIDE: "d-none",
 };
 
 class EventFilter {
@@ -14,15 +14,15 @@ class EventFilter {
 
   init() {
     // Use event delegation for better performance
-    document.addEventListener('change', (event) => {
-      const filter = event.target.closest('.jnd-filter');
+    document.addEventListener("change", (event) => {
+      const filter = event.target.closest(".jnd-filter");
       if (filter) {
         this.applyFilters();
       }
     });
-     
+
     // Add click listener for reset button
-    document.addEventListener('click', (event) => {
+    document.addEventListener("click", (event) => {
       if (event.target.matches(this.resetSelector)) {
         this.resetFilters();
       }
@@ -36,18 +36,21 @@ class EventFilter {
    * @returns {boolean} - Whether the element matches the filter
    */
   checkFilter(filter, element) {
-    const filterTarget = filter.getAttribute('jnd-filter-target');
+    const filterTarget = filter.getAttribute("jnd-filter-target");
     const elementValue = element.getAttribute(filterTarget);
 
     // Guard clause for invalid attributes
     if (!filterTarget || !elementValue) {
-      console.warn('Missing filter target or element value', { filter, element });
+      console.warn("Missing filter target or element value", {
+        filter,
+        element,
+      });
       return false;
     }
 
-    return filter.value === 'all' || elementValue.includes(filter.value);
+    return filter.value === "all" || elementValue.includes(filter.value);
   }
-  
+
   /**
    * Updates element visibility based on filter state
    * @param {HTMLElement} element - The element to update
@@ -65,33 +68,34 @@ class EventFilter {
     try {
       // Validate required elements
       if (!this.events?.length || !this.filters?.length) {
-        throw new Error('Required elements not found');
+        throw new Error("Required elements not found");
       }
 
       // Convert filters to array for better performance in loops
       const activeFilters = Array.from(this.filters);
 
-      this.events.forEach(element => {
+      this.events.forEach((element) => {
         // Use every() for better readability and performance
-        const isVisible = activeFilters.every(filter => 
+        const isVisible = activeFilters.every((filter) =>
           this.checkFilter(filter, element)
         );
-        
+
         this.updateElementVisibility(element, isVisible);
       });
-
     } catch (error) {
-      console.error('Error applying filters:', error.message);
+      console.error("Error applying filters:", error.message);
       // Use a more professional error message
-      this.showErrorMessage('An error occurred while filtering events. Please contact support if the issue persists.');
+      this.showErrorMessage(
+        "An error occurred while filtering events. Please contact support if the issue persists."
+      );
     }
   }
-  
+
   resetFilters() {
-    this.filters.forEach(filter => {
-      filter.value = 'all';
+    this.filters.forEach((filter) => {
+      filter.value = "all";
     });
-    
+
     // Apply filters after reset
     this.applyFilters();
   }
@@ -109,5 +113,9 @@ class EventFilter {
 }
 
 // Initialize the filter system
-const eventFilter = new EventFilter('.agenda-event', '.jnd-filter', '.jnd-filter-reset');
-const agendaEvents = document.getElementById('agenda-events');
+const eventFilter = new EventFilter(
+  ".agenda-event",
+  ".jnd-filter",
+  ".jnd-filter-reset"
+);
+const agendaEvents = document.getElementById("agenda-events");
