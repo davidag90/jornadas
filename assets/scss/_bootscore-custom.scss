@@ -133,8 +133,11 @@ $bottom-nav-height: 77px;
 #main-footer .navbar .navbar-nav {
   flex-direction: row;
   justify-content: center;
-  gap: 2rem;
-  max-width: 500px;
+  gap: 0.25rem;
+}
+
+#main-footer .navbar .navbar-nav .nav-link {
+  width: clamp(74px, 20dvw, 100px);
 }
 
 #main-footer .navbar .navbar-nav .nav-link .link-detail {
